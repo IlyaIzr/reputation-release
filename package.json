@@ -10,7 +10,10 @@
   },
   "scripts": {
     "dev": "node index.js",
-    "run": "node index.js --release"
+    "run": "node index.js --release", 
+    "git": "git add . && git commit -m",
+    "postgit": "git push"
+
   },
   "license": "MIT"
 }
