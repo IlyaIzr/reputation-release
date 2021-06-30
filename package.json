@@ -1,0 +1,16 @@
+{
+  "name": "spa-sv-t",
+  "description": "Total.js combined with svelte spa",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "mongoose": "^5.12.14",
+    "total4": "latest"
+  },
+  "scripts": {
+    "dev": "node index.js",
+    "run": "node index.js --release"
+  },
+  "license": "MIT"
+}

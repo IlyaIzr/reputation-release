@@ -1,0 +1,5 @@
+cookie                : userCookie
+cookie_secret         : aba21rfaf
+allow_compile_script  : false
+mongoUrl              : mongodb://localhost/reputation1
+table_users           : id:uid,login:uid,email:string,discord:string,username:string,role:string,password:string

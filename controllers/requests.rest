@@ -1,0 +1,27 @@
+### register user
+POST http://localhost:8000/api/auth/regTest
+content-type: application/json
+
+{
+    "login": "aaa",
+    "password": "aaaaaa"
+}
+
+# __ Migration ___ #
+### run migration test function
+GET http://localhost:8000/migration/test
+
+### copy users
+GET http://localhost:8000/migration/copyUsers
+
+### copy funds
+GET http://localhost:8000/migration/copyFunds
+
+
+### copy table rows (arbitrages)
+GET http://localhost:8000/migration/copyTable
+
+
+### Tests
+
+GET http://localhost:8000/api/users/some?creds=www
