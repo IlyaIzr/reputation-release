@@ -9,8 +9,8 @@
     "total4": "latest"
   },
   "scripts": {
-    "dev": "node index.js",
-    "run": "node index.js --release", 
+    "dev": "node debug.js",
+    "release": "node release.js", 
     "git": "git add . && git commit -m",
     "postgit": "git push"
 

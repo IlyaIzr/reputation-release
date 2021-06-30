@@ -22,6 +22,8 @@ let query
 let order = "desc" 
 let where = ""
 let timeout
+$: fundOptions = []
+let currentFund = ""
 async function tableRequest() {
   const res = await getTable(query, order);
   if (res.status !== 'OK') return error = res.msg || res
@@ -59,6 +61,7 @@ function mountTable(data = [], last_page) {
       where: where,
       id: query || "",
       order: order,
+      author: currentFund
     },
     columnMaxWidth: 300,
     dataTree:true,
@@ -577,44 +580,59 @@ async function onFilter(e) {
 onMount(async () => {
   const res = await tableRequest()
   if (res) mountTable(res.data, res.last_page)
+  const temp = [{id: "", name: 'Все фонды'}]
+  Object.entries($fundNames).forEach(([id,name])=> temp.push({id,name}))
+  fundOptions = temp
 });
+function onBlur(e) {
+  mountTable()
+}
 </script>
 
 <main>
-    {error}
-    <br />
-    <div class="userControls inline">
-        <div class="ui icon input item">
-            <input type="text" on:input={onFilter} placeholder="Поиск записей" />
-            <i class="search link icon" />
-        </div>
+  {error}
+  <br />
+  <div class="userControls inline">
+    <!-- svelte-ignore a11y-no-onchange -->
+    <select bind:value={currentFund} on:change={onBlur}>
+      {#each fundOptions as fund}
+        <option value={fund.id}>
+          {fund.name}
+        </option>
+      {/each}
+    </select>
 
-        {#if $user.role === "root" || isWriter()}
-        <div class="createContainer">
-            <LinkButton to="createNote" label="Создать запись" />
-        </div>
-        {/if}
+    <div class="ui icon input item">
+      <input type="text" on:input={onFilter} placeholder="Поиск записей" />
+      <i class="search link icon" />
     </div>
 
-    <div id="tableMountingPoint" />
-    <div id="modalPoint" />
+    {#if $user.role === "root" || isWriter()}
+      <div class="createContainer">
+        <LinkButton to="createNote" label="Создать запись" />
+      </div>
+    {/if}
+  </div>
+
+  <div id="tableMountingPoint" />
+  <div id="modalPoint" />
 </main>
 
 <style>
-.userControls {
-  padding: 6px;
-}
+  .userControls {
+    padding: 6px;
+  }
 
-.userControls input {
-  min-width: 280px;
-}
+  .userControls input {
+    min-width: 280px;
+  }
 
-.inline {
-  flex-wrap: wrap;
-}
+  .inline {
+    flex-wrap: wrap;
+  }
 
-.createContainer {
-  display: inline-block;
-  margin-left: 24px;
-}
+  .createContainer {
+    display: inline-block;
+    margin-left: 24px;
+  }
 </style>

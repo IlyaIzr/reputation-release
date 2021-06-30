@@ -35,7 +35,7 @@ async function login() {
 	}))
 	console.log(comparedUser);
 
-	if (!comparedUser) return $.status(400).json({ status: 'ERR', msg: 'Неверный пароль или логин' })
+	if (!comparedUser) return $.json({ status: 'ERR', msg: 'Неверный пароль или логин' })
 
 	delete comparedUser.password
 

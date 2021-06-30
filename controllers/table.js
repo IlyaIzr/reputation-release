@@ -16,6 +16,7 @@ async function getTable() {
   let where = req.query.where || ""  //TODO
   const order = req.query.order || "desc"
   const field = req.query.field || 'created'
+  const { author } = req.query
 
   // Regex corrections
   // where = where.replace('*', '\\*')
@@ -33,16 +34,19 @@ async function getTable() {
   //   totalCount = await TRow.find({ author: req.query?.id }).countDocuments((e, r) => totalCount = r)
   //   last_page = totalCount ? Math.floor(totalCount / limit) : 1
   // } else {
-  if (where) {
-    // console.log('%c⧭ where', 'color: #731d6d', where);
+  if (where || author) {
     const table = await NOSQL('arbitrages').find()
       .sort(field + "_" + order)
       .join('_children', 'arb-history').on('id', 'id')
       // .rule('doc.FIO[0].lastname.includes(arg.where)', { where }).
       // .skip(page * limit).sort(field + "_" + order).take(Number(limit))
-      .promise(res => res.findAll(i => JSON.stringify(i).toLocaleLowerCase().includes(where.toLocaleLowerCase())
-      ))
+      .promise(res => {
+        let ret = res.findAll(i => JSON.stringify(i).toLocaleLowerCase().includes(where?.toLocaleLowerCase()))
+        if (author) ret = ret.findAll(i => i.author === author)
+        return ret
+      })
     // await table.skip(page * limit).take(Number(limit)) //not working
+    
     const res = table.splice(page * limit, Number(limit))
     res.forEach(e => !e._children[0] ? delete e._children : null);
     const count = table.length
@@ -55,7 +59,6 @@ async function getTable() {
     .promise()
   // Delete empty _children  
   table.forEach(e => !e._children[0] ? delete e._children : null);
-  console.log('%c⧭', 'color: #ffa280', table.take(2));
   const { count } = await NOSQL('arbitrages').count().promise()
 
   last_page = count ? Math.floor(count / limit) : 1
