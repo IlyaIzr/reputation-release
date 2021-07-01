@@ -590,28 +590,32 @@ function onBlur(e) {
 </script>
 
 <main>
-  {error}
-  <br />
-  <div class="userControls inline">
-    <!-- svelte-ignore a11y-no-onchange -->
-    <select bind:value={currentFund} on:change={onBlur}>
-      {#each fundOptions as fund}
-        <option value={fund.id}>
-          {fund.name}
-        </option>
-      {/each}
-    </select>
+  {#if error}
+    {error}
+    <br />
+  {/if}
+  <div class="tableControls">
+    <div class="userControls inline ui input">
+      <!-- svelte-ignore a11y-no-onchange -->
+      <select bind:value={currentFund} on:change={onBlur} class="item">
+        {#each fundOptions as fund}
+          <option value={fund.id} class="item">
+            {fund.name}
+          </option>
+        {/each}
+      </select>
 
-    <div class="ui icon input item">
-      <input type="text" on:input={onFilter} placeholder="Поиск записей" />
-      <i class="search link icon" />
-    </div>
-
-    {#if $user.role === "root" || isWriter()}
-      <div class="createContainer">
-        <LinkButton to="createNote" label="Создать запись" />
+      <div class="ui icon input item">
+        <input type="text" on:input={onFilter} placeholder="Поиск записей" />
+        <i class="search link icon" />
       </div>
-    {/if}
+
+      {#if $user.role === "root" || isWriter()}
+        <div class="createContainer item">
+          <LinkButton to="createNote" label="Создать запись"/>
+        </div>
+      {/if}
+    </div>
   </div>
 
   <div id="tableMountingPoint" />
@@ -634,5 +638,13 @@ function onBlur(e) {
   .createContainer {
     display: inline-block;
     margin-left: 24px;
+  }
+  select{
+    padding: 0 6px;
+    border: 1px solid rgb(223, 223, 223);
+    border-radius: 2px;
+  }
+  .item{
+    margin: 0 8px;
   }
 </style>

@@ -45,6 +45,7 @@ window.onpopstate = function(e){
 
 <main>
   <Navbar />
+  <div class="navFiller"></div>
 
   <!-- Routing -->
 
@@ -76,4 +77,7 @@ window.onpopstate = function(e){
 </main>
 
 <style>
+  .navFiller{
+    height: 34px;
+  }
 </style>

@@ -16,7 +16,7 @@ location.subscribe(loc => {
 ;
 </script>
 
-<button class="link-button" class:current on:click={onClick}>{label || to}</button>
+<button class="link-button ui button" class:current on:click={onClick}>{label || to}</button>
 
 <style>
   .link-button {
