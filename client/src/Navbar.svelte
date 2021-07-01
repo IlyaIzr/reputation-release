@@ -15,7 +15,7 @@ async function logOut() {
 
 <nav>
   {#if !$user.role}
-    <NavButton to="login" />
+    <NavButton to="login" label="Логин"/>
   {:else}
     <NavButton label="Таблица" to="" />
     {#if $user.role === "root" || isManager()}

@@ -470,11 +470,19 @@ onMount(async () => {
 </script>
 
 <main>
+  {#if groupInfo}
+    <h5 class="">Фонд {groupInfo?.name}</h5>
+  {/if}
   <div class="navigation">
-    <button on:click={() => tabClick(0)}>Общая информация</button>
-    <button on:click={() => tabClick(1)}>Добавить участников</button>
-    <button on:click={() => tabClick(2)}>Редактировать участников</button>
+    <div class="{tab === 0 ? 'current' : 'link-button'}" on:click={() => tabClick(0)}>Общая информация</div>
+    <div class="{tab === 1 ? 'current' : 'link-button'}" on:click={() => tabClick(1)}>Добавить участников</div>
+    <div class="{tab === 2 ? 'current' : 'link-button'}" on:click={() => tabClick(2)}>Редактировать участников</div>
   </div>
+
+  {#if error}
+    {error}
+    <br />
+  {/if}
 
   {#if tab === 0}
     <div id="editGroupForm" />
@@ -486,3 +494,33 @@ onMount(async () => {
     <div id="userEditor" />
   {/if}
 </main>
+
+<style>
+  .navigation {
+    padding: 2px 6px;
+  }
+  h5{
+    padding: 0 14px;
+    margin: 0 0 4px 0 ;
+  }
+  .link-button {
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0px 0px 0px 0px;
+    padding: 4px 8px;
+    border-radius: 2px;
+    font-family: Roboto, -apple-system, Helvetica Neue, Helvetica, Arial, sans-serif;
+  }
+  .current{
+    display: inline-block;
+    pointer-events: none;
+    color: #2b0635;
+    font-size: 16px;
+    margin: 0px 0px 0px 0px;
+    padding: 4px 8px;
+    font-family: Roboto, -apple-system, Helvetica Neue, Helvetica, Arial, sans-serif;
+    background-color: #50c8ff;
+    border-radius: 2px;
+  }
+</style>

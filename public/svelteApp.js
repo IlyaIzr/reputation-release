@@ -40,6 +40,9 @@ var app = (function () {
     function component_subscribe(component, store, callback) {
         component.$$.on_destroy.push(subscribe(store, callback));
     }
+    function null_to_empty(value) {
+        return value == null ? '' : value;
+    }
     function set_store_value(store, ret, value = ret) {
         store.set(value);
         return ret;
@@ -549,7 +552,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			t = text(t_value);
-    			attr_dev(div, "class", "link-button svelte-epgudl");
+    			attr_dev(div, "class", "link-button svelte-1lu6yvv");
     			toggle_class(div, "current", /*current*/ ctx[2]);
     			add_location(div, file$d, 18, 0, 345);
     		},
@@ -774,7 +777,7 @@ var app = (function () {
     			div = element("div");
     			div.textContent = "Выйти";
     			attr_dev(div, "class", "link-button svelte-dqos1q");
-    			add_location(div, file$c, 24, 4, 621);
+    			add_location(div, file$c, 24, 4, 634);
     		},
     		m: function mount(target, anchor) {
     			mount_component(navbutton, target, anchor);
@@ -850,7 +853,11 @@ var app = (function () {
     function create_if_block$6(ctx) {
     	let navbutton;
     	let current;
-    	navbutton = new NavButton({ props: { to: "login" }, $$inline: true });
+
+    	navbutton = new NavButton({
+    			props: { to: "login", label: "Логин" },
+    			$$inline: true
+    		});
 
     	const block = {
     		c: function create() {
@@ -3824,7 +3831,85 @@ var app = (function () {
     const { Object: Object_1$2 } = globals;
     const file$3 = "src\\fund\\EditFund.svelte";
 
-    // (484:22) 
+    // (473:2) {#if groupInfo}
+    function create_if_block_4$1(ctx) {
+    	let h5;
+    	let t0;
+    	let t1_value = /*groupInfo*/ ctx[2]?.name + "";
+    	let t1;
+
+    	const block = {
+    		c: function create() {
+    			h5 = element("h5");
+    			t0 = text("Фонд ");
+    			t1 = text(t1_value);
+    			attr_dev(h5, "class", " svelte-neoc7b");
+    			add_location(h5, file$3, 473, 4, 12114);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, h5, anchor);
+    			append_dev(h5, t0);
+    			append_dev(h5, t1);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*groupInfo*/ 4 && t1_value !== (t1_value = /*groupInfo*/ ctx[2]?.name + "")) set_data_dev(t1, t1_value);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(h5);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_4$1.name,
+    		type: "if",
+    		source: "(473:2) {#if groupInfo}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (482:2) {#if error}
+    function create_if_block_3$1(ctx) {
+    	let t0;
+    	let t1;
+    	let br;
+
+    	const block = {
+    		c: function create() {
+    			t0 = text(/*error*/ ctx[1]);
+    			t1 = space();
+    			br = element("br");
+    			add_location(br, file$3, 483, 4, 12578);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, t1, anchor);
+    			insert_dev(target, br, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*error*/ 2) set_data_dev(t0, /*error*/ ctx[1]);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(t0);
+    			if (detaching) detach_dev(t1);
+    			if (detaching) detach_dev(br);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_3$1.name,
+    		type: "if",
+    		source: "(482:2) {#if error}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (492:22) 
     function create_if_block_2$1(ctx) {
     	let div0;
     	let t;
@@ -3836,9 +3921,9 @@ var app = (function () {
     			t = space();
     			div1 = element("div");
     			attr_dev(div0, "id", "usersTable");
-    			add_location(div0, file$3, 484, 4, 12517);
+    			add_location(div0, file$3, 492, 4, 12768);
     			attr_dev(div1, "id", "userEditor");
-    			add_location(div1, file$3, 485, 4, 12546);
+    			add_location(div1, file$3, 493, 4, 12797);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div0, anchor);
@@ -3856,14 +3941,14 @@ var app = (function () {
     		block,
     		id: create_if_block_2$1.name,
     		type: "if",
-    		source: "(484:22) ",
+    		source: "(492:22) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (481:22) 
+    // (489:22) 
     function create_if_block_1$1(ctx) {
     	let div0;
     	let t;
@@ -3875,9 +3960,9 @@ var app = (function () {
     			t = space();
     			div1 = element("div");
     			attr_dev(div0, "id", "addUsersForm");
-    			add_location(div0, file$3, 481, 4, 12425);
+    			add_location(div0, file$3, 489, 4, 12676);
     			attr_dev(div1, "id", "regAndAddUsersForm");
-    			add_location(div1, file$3, 482, 4, 12456);
+    			add_location(div1, file$3, 490, 4, 12707);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div0, anchor);
@@ -3895,14 +3980,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1$1.name,
     		type: "if",
-    		source: "(481:22) ",
+    		source: "(489:22) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (479:2) {#if tab === 0}
+    // (487:2) {#if tab === 0}
     function create_if_block$2(ctx) {
     	let div;
 
@@ -3910,7 +3995,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			attr_dev(div, "id", "editGroupForm");
-    			add_location(div, file$3, 479, 4, 12369);
+    			add_location(div, file$3, 487, 4, 12620);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -3924,7 +4009,7 @@ var app = (function () {
     		block,
     		id: create_if_block$2.name,
     		type: "if",
-    		source: "(479:2) {#if tab === 0}",
+    		source: "(487:2) {#if tab === 0}",
     		ctx
     	});
 
@@ -3933,15 +4018,25 @@ var app = (function () {
 
     function create_fragment$3(ctx) {
     	let main;
-    	let div;
-    	let button0;
+    	let t0;
+    	let div3;
+    	let div0;
     	let t1;
-    	let button1;
+    	let div0_class_value;
+    	let t2;
+    	let div1;
     	let t3;
-    	let button2;
+    	let div1_class_value;
+    	let t4;
+    	let div2;
     	let t5;
+    	let div2_class_value;
+    	let t6;
+    	let t7;
     	let mounted;
     	let dispose;
+    	let if_block0 = /*groupInfo*/ ctx[2] && create_if_block_4$1(ctx);
+    	let if_block1 = /*error*/ ctx[1] && create_if_block_3$1(ctx);
 
     	function select_block_type(ctx, dirty) {
     		if (/*tab*/ ctx[0] === 0) return create_if_block$2;
@@ -3950,27 +4045,34 @@ var app = (function () {
     	}
 
     	let current_block_type = select_block_type(ctx);
-    	let if_block = current_block_type && current_block_type(ctx);
+    	let if_block2 = current_block_type && current_block_type(ctx);
 
     	const block = {
     		c: function create() {
     			main = element("main");
-    			div = element("div");
-    			button0 = element("button");
-    			button0.textContent = "Общая информация";
-    			t1 = space();
-    			button1 = element("button");
-    			button1.textContent = "Добавить участников";
-    			t3 = space();
-    			button2 = element("button");
-    			button2.textContent = "Редактировать участников";
-    			t5 = space();
-    			if (if_block) if_block.c();
-    			add_location(button0, file$3, 473, 4, 12123);
-    			add_location(button1, file$3, 474, 4, 12191);
-    			add_location(button2, file$3, 475, 4, 12262);
-    			attr_dev(div, "class", "navigation");
-    			add_location(div, file$3, 472, 2, 12093);
+    			if (if_block0) if_block0.c();
+    			t0 = space();
+    			div3 = element("div");
+    			div0 = element("div");
+    			t1 = text("Общая информация");
+    			t2 = space();
+    			div1 = element("div");
+    			t3 = text("Добавить участников");
+    			t4 = space();
+    			div2 = element("div");
+    			t5 = text("Редактировать участников");
+    			t6 = space();
+    			if (if_block1) if_block1.c();
+    			t7 = space();
+    			if (if_block2) if_block2.c();
+    			attr_dev(div0, "class", div0_class_value = "" + (null_to_empty(/*tab*/ ctx[0] === 0 ? "current" : "link-button") + " svelte-neoc7b"));
+    			add_location(div0, file$3, 476, 4, 12197);
+    			attr_dev(div1, "class", div1_class_value = "" + (null_to_empty(/*tab*/ ctx[0] === 1 ? "current" : "link-button") + " svelte-neoc7b"));
+    			add_location(div1, file$3, 477, 4, 12307);
+    			attr_dev(div2, "class", div2_class_value = "" + (null_to_empty(/*tab*/ ctx[0] === 2 ? "current" : "link-button") + " svelte-neoc7b"));
+    			add_location(div2, file$3, 478, 4, 12420);
+    			attr_dev(div3, "class", "navigation svelte-neoc7b");
+    			add_location(div3, file$3, 475, 2, 12167);
     			add_location(main, file$3, 471, 0, 12083);
     		},
     		l: function claim(nodes) {
@@ -3978,33 +4080,78 @@ var app = (function () {
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, main, anchor);
-    			append_dev(main, div);
-    			append_dev(div, button0);
-    			append_dev(div, t1);
-    			append_dev(div, button1);
-    			append_dev(div, t3);
-    			append_dev(div, button2);
-    			append_dev(main, t5);
-    			if (if_block) if_block.m(main, null);
+    			if (if_block0) if_block0.m(main, null);
+    			append_dev(main, t0);
+    			append_dev(main, div3);
+    			append_dev(div3, div0);
+    			append_dev(div0, t1);
+    			append_dev(div3, t2);
+    			append_dev(div3, div1);
+    			append_dev(div1, t3);
+    			append_dev(div3, t4);
+    			append_dev(div3, div2);
+    			append_dev(div2, t5);
+    			append_dev(main, t6);
+    			if (if_block1) if_block1.m(main, null);
+    			append_dev(main, t7);
+    			if (if_block2) if_block2.m(main, null);
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(button0, "click", /*click_handler*/ ctx[2], false, false, false),
-    					listen_dev(button1, "click", /*click_handler_1*/ ctx[3], false, false, false),
-    					listen_dev(button2, "click", /*click_handler_2*/ ctx[4], false, false, false)
+    					listen_dev(div0, "click", /*click_handler*/ ctx[4], false, false, false),
+    					listen_dev(div1, "click", /*click_handler_1*/ ctx[5], false, false, false),
+    					listen_dev(div2, "click", /*click_handler_2*/ ctx[6], false, false, false)
     				];
 
     				mounted = true;
     			}
     		},
     		p: function update(ctx, [dirty]) {
-    			if (current_block_type !== (current_block_type = select_block_type(ctx))) {
-    				if (if_block) if_block.d(1);
-    				if_block = current_block_type && current_block_type(ctx);
+    			if (/*groupInfo*/ ctx[2]) {
+    				if (if_block0) {
+    					if_block0.p(ctx, dirty);
+    				} else {
+    					if_block0 = create_if_block_4$1(ctx);
+    					if_block0.c();
+    					if_block0.m(main, t0);
+    				}
+    			} else if (if_block0) {
+    				if_block0.d(1);
+    				if_block0 = null;
+    			}
 
-    				if (if_block) {
-    					if_block.c();
-    					if_block.m(main, null);
+    			if (dirty & /*tab*/ 1 && div0_class_value !== (div0_class_value = "" + (null_to_empty(/*tab*/ ctx[0] === 0 ? "current" : "link-button") + " svelte-neoc7b"))) {
+    				attr_dev(div0, "class", div0_class_value);
+    			}
+
+    			if (dirty & /*tab*/ 1 && div1_class_value !== (div1_class_value = "" + (null_to_empty(/*tab*/ ctx[0] === 1 ? "current" : "link-button") + " svelte-neoc7b"))) {
+    				attr_dev(div1, "class", div1_class_value);
+    			}
+
+    			if (dirty & /*tab*/ 1 && div2_class_value !== (div2_class_value = "" + (null_to_empty(/*tab*/ ctx[0] === 2 ? "current" : "link-button") + " svelte-neoc7b"))) {
+    				attr_dev(div2, "class", div2_class_value);
+    			}
+
+    			if (/*error*/ ctx[1]) {
+    				if (if_block1) {
+    					if_block1.p(ctx, dirty);
+    				} else {
+    					if_block1 = create_if_block_3$1(ctx);
+    					if_block1.c();
+    					if_block1.m(main, t7);
+    				}
+    			} else if (if_block1) {
+    				if_block1.d(1);
+    				if_block1 = null;
+    			}
+
+    			if (current_block_type !== (current_block_type = select_block_type(ctx))) {
+    				if (if_block2) if_block2.d(1);
+    				if_block2 = current_block_type && current_block_type(ctx);
+
+    				if (if_block2) {
+    					if_block2.c();
+    					if_block2.m(main, null);
     				}
     			}
     		},
@@ -4012,9 +4159,11 @@ var app = (function () {
     		o: noop,
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(main);
+    			if (if_block0) if_block0.d();
+    			if (if_block1) if_block1.d();
 
-    			if (if_block) {
-    				if_block.d();
+    			if (if_block2) {
+    				if_block2.d();
     			}
 
     			mounted = false;
@@ -4106,7 +4255,7 @@ var app = (function () {
 
     						if (res.status === "OK") {
     							// Update local data of group and user info
-    							groupInfo.owner = currentUser;
+    							$$invalidate(2, groupInfo.owner = currentUser, groupInfo);
 
     							currentUser = null;
     							usersObj[data.owner] = "owner";
@@ -4126,7 +4275,7 @@ var app = (function () {
 
     					if (res.status === "OK") {
     						delete data.owner;
-    						groupInfo = { ...groupInfo, ...data };
+    						$$invalidate(2, groupInfo = { ...groupInfo, ...data });
     					}
 
     					fb.fields.msg.value = res.msg;
@@ -4354,7 +4503,7 @@ var app = (function () {
     							a.addEventListener("click", () => {
     								selectedUser = { ...cell._cell.row.data, role };
     								prevRole = role;
-    								error = "";
+    								$$invalidate(1, error = "");
     								mountUserEditor();
     							});
 
@@ -4421,7 +4570,7 @@ var app = (function () {
     		const response = await getFundFormated(id);
 
     		if (response.status === "OK") {
-    			groupInfo = response.data;
+    			$$invalidate(2, groupInfo = response.data);
 
     			// Set users 
     			groupInfo.owner?.value && (usersObj[groupInfo.owner.value] = "owner");
@@ -4430,14 +4579,14 @@ var app = (function () {
     			groupInfo.users.forEach(e => usersObj[e.value] = "user");
     			groupInfo.readonlys.forEach(e => usersObj[e.value] = "readonly");
     			return groupInfo;
-    		} else error = response.msg || response;
+    		} else $$invalidate(1, error = response.msg || response);
     	}
 
     	
 
     	async function tabClick(number = 0) {
     		$$invalidate(0, tab = number);
-    		error = "";
+    		$$invalidate(1, error = "");
     		await tick();
     		if (number === 0) return mountForm();
     		if (number === 1) return mountAddUser() || mountRegAndConfig();
@@ -4494,9 +4643,9 @@ var app = (function () {
 
     	$$self.$inject_state = $$props => {
     		if ("tab" in $$props) $$invalidate(0, tab = $$props.tab);
-    		if ("error" in $$props) error = $$props.error;
+    		if ("error" in $$props) $$invalidate(1, error = $$props.error);
     		if ("options" in $$props) options = $$props.options;
-    		if ("groupInfo" in $$props) groupInfo = $$props.groupInfo;
+    		if ("groupInfo" in $$props) $$invalidate(2, groupInfo = $$props.groupInfo);
     		if ("currentUser" in $$props) currentUser = $$props.currentUser;
     		if ("selectedUser" in $$props) selectedUser = $$props.selectedUser;
     		if ("prevRole" in $$props) prevRole = $$props.prevRole;
@@ -4506,7 +4655,15 @@ var app = (function () {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [tab, tabClick, click_handler, click_handler_1, click_handler_2];
+    	return [
+    		tab,
+    		error,
+    		groupInfo,
+    		tabClick,
+    		click_handler,
+    		click_handler_1,
+    		click_handler_2
+    	];
     }
 
     class EditFund extends SvelteComponentDev {
