@@ -83,7 +83,7 @@ async function getFunds() {
   // Return manageble groups only
   userGroups.length && await Promise.all(userGroups.map(async ([id, role]) => {
     if (role === 'manager' || role === 'owner') {
-      const groupInfo = await NOSQL('funds').find().id(id).promise()
+      const groupInfo = await NOSQL('funds').one().id(id).promise()
       if (groupInfo) groups.push(groupInfo)
     }
   }))

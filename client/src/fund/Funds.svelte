@@ -25,6 +25,7 @@ onMount(async () => {
   const res = await getFunds();
   if (res.status === 'OK') {
     fundInfo = res.data
+    console.log('%c⧭', 'color: #cc7033', fundInfo);
     initFundInfo = [...res.data]
     mountTable()
   } else {
