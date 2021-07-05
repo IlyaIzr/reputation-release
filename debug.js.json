@@ -15,7 +15,7 @@
 			"thread": "",
 			"mode": "debug",
 			"overload": 0,
-			"date": "2021-07-05T13:50:02.110Z",
+			"date": "2021-07-05T13:51:02.125Z",
 			"textdb": {
 				"size": 1.496,
 				"pendingwrite": 0,
@@ -25,7 +25,7 @@
 				"reading": 0,
 				"writing": 0
 			},
-			"memory": 15.74,
+			"memory": 15.75,
 			"rm": 0,
 			"fm": 0,
 			"wm": 0,
@@ -38,14 +38,14 @@
 			"sm": 0,
 			"dbrm": 0,
 			"dbwm": 0,
-			"usage": 0,
+			"usage": 2,
 			"requests": 58,
 			"pending": 0,
 			"external": 0,
 			"errors": 0,
 			"timeouts": 0,
 			"online": 0,
-			"uptime": 7,
+			"uptime": 8,
 			"download": 0,
 			"upload": 0.027
 		}
