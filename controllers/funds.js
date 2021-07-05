@@ -36,7 +36,6 @@ async function createFund() {
 
   // Add fund ownership to owner  
   const user = await NOSQL('userprops').one().where('id', data.owner).promise()
-  console.log('%c⧭ user res', 'color: #ffa280', user, data.owner);
   // user kinda guranteed at this point, BUT... jik
   if (!user) return $.json({ status: 'REAUTH', msg: 'Непредвиденная ошибка' })
   if (!user.funds) user.funds = {}

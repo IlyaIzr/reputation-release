@@ -33,7 +33,6 @@ async function login() {
 		if (password === user.password || await bcrypt.compare(password, user.password))
 			return comparedUser = user
 	}))
-	console.log(comparedUser);
 
 	if (!comparedUser) return $.json({ status: 'ERR', msg: 'Неверный пароль или логин' })
 
@@ -76,7 +75,6 @@ async function regTest() {
 	await NOSQL('userprops').insert({ id }).promise()
 
 
-	console.log('%c⧭', 'color: #006dcc', builder);
 	$.json({ status: 'OK', msg: 'all good', data: builder })
 }
 
