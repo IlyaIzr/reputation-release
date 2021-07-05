@@ -105,3 +105,20 @@ export const getAvailibleUsers = async () => {
     return error
   }
 }
+
+export const getChildren = async () => {
+  const options = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    },
+  }
+  try {
+    const response = await fetch(api + 'users/children', options)
+    const res = response.json()
+    return res
+  } catch (error) {
+    return error
+  }
+}

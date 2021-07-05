@@ -1,4 +1,4 @@
-import { getAllUsers, getAvailibleUsers } from '../rest/user.request'
+import { getAllUsers, getAvailibleUsers, getChildren } from '../rest/user.request'
 import { getFundMembers } from '../rest/fund.request'
 
 
@@ -40,11 +40,11 @@ export async function getUsers(user, funds) {
 
   const children = user.children;
   if (children?.length) {
-    const res = await getChildren(app.state.token);
+    const res = await getChildren();
     if (res.status === "OK" && res.data.length) {
       userInfo = [...userInfo, ...res.data]
     } 
-    if (res.status !== "OK") return [null, res.msg || res]
+    else return [null, res.msg || res]
   }
 
   // Filter dublicats

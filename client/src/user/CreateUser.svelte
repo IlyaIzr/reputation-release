@@ -78,10 +78,9 @@ const config = {
       }
 
       const res = await createUser(cleaned);
-      console.log('%c⧭', 'color: #40fff2', res);
       fb.fields.message.value = res.msg || "Неизвестная ошибка, проверьте подключение";
 
-      if (res.status === 'OK')  addChildren(res.user.id)
+      if (res.status === 'OK')  addChildren(res.data.id)
       
     },
   },

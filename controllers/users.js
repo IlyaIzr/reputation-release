@@ -71,7 +71,7 @@ async function getChildren() {
   const children = props.children || []
   const users = []
 
-  await Promise.all(children.length && children.map(async (id) => {
+  children.length && await Promise.all(children.map(async (id) => {
     const user = await TABLE('users').one().where('id', id).fields('-password').promise()
     const userProps = await NOSQL('userprops').one().id(id).promise()
     const res = { ...user, userProps }

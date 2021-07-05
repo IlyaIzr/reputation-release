@@ -11,6 +11,7 @@ import {
   fundNames,
   fundRights,
   goTo,
+  isManager,
   user
 } from '../rest/store';
 
@@ -138,7 +139,7 @@ function onFilter(e) {
     <input type="text" on:input={onFilter} placeholder="Поиск пользователей" />
     <i class="search link icon" />
   </div>
-  {#if $user.role === "root"}
+  {#if $user.role === "root" || isManager()}
     <div class="createContainer">
       <LinkButton to="createUser" label="Создать пользователя" />
     </div>
