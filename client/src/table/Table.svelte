@@ -389,6 +389,7 @@ function mountModal(id, data) {
             row: 1,
           },
         },
+        visible: data.case.length
       },
 
       nickname: {
@@ -409,12 +410,9 @@ function mountModal(id, data) {
             row: 1,
           },
         },
+        visible: data.nickname.length
       },
 
-      horizont: {
-        type: "html",
-        value: '<div class="filler"/>'
-      },
 
       nicknameOld: {
         label: "Архивные значения",
@@ -440,82 +438,93 @@ function mountModal(id, data) {
             row: 1,
           },
         },
+        visible: data.FIO.length
       },
 
-      horizont2: {
-        type: "html",
-        value: '<hr class="q-ma-none q-pa-none"/>'
-      },
 
       gipsyteam: {
         label: "Gipsy team",
         type: "creatable",
         outlined: true,
+        visible: data.gipsyteam.length
       },
       skype: {
         label: "Аккаунты Skype",
         type: "creatable",
         outlined: true,
+        visible: data.skype.length
       },
       skrill: {
         label: "Аккаунты skrill",
         type: "creatable",
         outlined: true,
+        visible: data.skrill.length
       },
       neteller: {
         label: "Аккаунты neteller",
         type: "creatable",
         outlined: true,
+        visible: data.neteller.length
       },
       phone: {
         label: "Телефоны",
         type: "creatable",
         outlined: true,
+        visible: data.phone.length
       },
       pokerstrategy: {
         label: "Poker Strategy",
         type: "creatable",
         outlined: true,
+        visible: data.pokerstrategy.length
       },
       google: {
         label: "Google аккаунты",
         type: "creatable",
         outlined: true,
+        visible: data.google.length
       },
       mail: {
         label: "Адреса e-mail",
         type: "creatable",
         outlined: true,
+        visible: data.mail.length
       },
       vk: {
         label: "Аккаунты vkontakte",
         type: "creatable",
         outlined: true,
+        visible: data.vk.length
       },
       facebook: {
         label: "Аккаунты facebook",
         type: "creatable",
         outlined: true,
+        visible: data.facebook.length
       },
       blog: {
         label: "Блоги",
         type: "creatable",
         outlined: true,
+        visible: data.blog.length
       },
       instagram: {
         label: "Аккаунты instagram",
         type: "creatable",
         outlined: true,
+        visible: data.instagram.length
       },
       forum: {
         label: "Форумы",
         type: "creatable",
         outlined: true,
+        visible: data.forum.length
       },
       ecopayz: {
         label: "Аккаунты ecopayz",
         type: "creatable",
         outlined: true,
+        visible: data.ecopayz.length
       },
       location: {
         label: "Адреса",
@@ -535,6 +544,7 @@ function mountModal(id, data) {
             row: 1,
           },
         },
+        visible: data.location.length
       },
       webmoney: {
         label: "Аккаунты Webmoney",
@@ -552,10 +562,12 @@ function mountModal(id, data) {
             row: 1,
           },
         },
+        visible: data.webmoney.length
       },
       comments: {
         label: "Комментарии",
-        type: 'textarea'
+        type: 'textarea',
+        visible: data.comments
       },
     },
     title: "Просмотр записи",

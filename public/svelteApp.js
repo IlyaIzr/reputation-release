@@ -1777,7 +1777,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (594:2) {#if error}
+    // (606:2) {#if error}
     function create_if_block_1$2(ctx) {
     	let t0;
     	let t1;
@@ -1788,7 +1788,7 @@ var app = (function () {
     			t0 = text(/*error*/ ctx[0]);
     			t1 = space();
     			br = element("br");
-    			add_location(br, file$8, 595, 4, 15193);
+    			add_location(br, file$8, 607, 4, 15740);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, t0, anchor);
@@ -1809,14 +1809,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1$2.name,
     		type: "if",
-    		source: "(594:2) {#if error}",
+    		source: "(606:2) {#if error}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (602:8) {#each fundOptions as fund}
+    // (614:8) {#each fundOptions as fund}
     function create_each_block(ctx) {
     	let option;
     	let t0_value = /*fund*/ ctx[16].name + "";
@@ -1832,7 +1832,7 @@ var app = (function () {
     			option.__value = option_value_value = /*fund*/ ctx[16].id;
     			option.value = option.__value;
     			attr_dev(option, "class", "item svelte-1in54i1");
-    			add_location(option, file$8, 602, 10, 15456);
+    			add_location(option, file$8, 614, 10, 16003);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, option, anchor);
@@ -1856,14 +1856,14 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(602:8) {#each fundOptions as fund}",
+    		source: "(614:8) {#each fundOptions as fund}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (614:6) {#if $user.role === "root" || isWriter()}
+    // (626:6) {#if $user.role === "root" || isWriter()}
     function create_if_block$5(ctx) {
     	let div;
     	let linkbutton;
@@ -1882,7 +1882,7 @@ var app = (function () {
     			div = element("div");
     			create_component(linkbutton.$$.fragment);
     			attr_dev(div, "class", "createContainer item svelte-1in54i1");
-    			add_location(div, file$8, 614, 8, 15809);
+    			add_location(div, file$8, 626, 8, 16356);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -1908,7 +1908,7 @@ var app = (function () {
     		block,
     		id: create_if_block$5.name,
     		type: "if",
-    		source: "(614:6) {#if $user.role === \\\"root\\\" || isWriter()}",
+    		source: "(626:6) {#if $user.role === \\\"root\\\" || isWriter()}",
     		ctx
     	});
 
@@ -1972,24 +1972,24 @@ var app = (function () {
     			div4 = element("div");
     			attr_dev(select, "class", "item svelte-1in54i1");
     			if (/*currentFund*/ ctx[1] === void 0) add_render_callback(() => /*select_change_handler*/ ctx[6].call(select));
-    			add_location(select, file$8, 600, 6, 15342);
+    			add_location(select, file$8, 612, 6, 15889);
     			attr_dev(input, "type", "text");
     			attr_dev(input, "placeholder", "Поиск записей");
     			attr_dev(input, "class", "svelte-1in54i1");
-    			add_location(input, file$8, 609, 8, 15625);
+    			add_location(input, file$8, 621, 8, 16172);
     			attr_dev(i, "class", "search link icon");
-    			add_location(i, file$8, 610, 8, 15704);
+    			add_location(i, file$8, 622, 8, 16251);
     			attr_dev(div0, "class", "ui icon input item svelte-1in54i1");
-    			add_location(div0, file$8, 608, 6, 15583);
+    			add_location(div0, file$8, 620, 6, 16130);
     			attr_dev(div1, "class", "userControls inline ui input svelte-1in54i1");
-    			add_location(div1, file$8, 598, 4, 15245);
+    			add_location(div1, file$8, 610, 4, 15792);
     			attr_dev(div2, "class", "tableControls");
-    			add_location(div2, file$8, 597, 2, 15212);
+    			add_location(div2, file$8, 609, 2, 15759);
     			attr_dev(div3, "id", "tableMountingPoint");
-    			add_location(div3, file$8, 621, 2, 15964);
+    			add_location(div3, file$8, 633, 2, 16511);
     			attr_dev(div4, "id", "modalPoint");
-    			add_location(div4, file$8, 622, 2, 15999);
-    			add_location(main, file$8, 592, 0, 15153);
+    			add_location(div4, file$8, 634, 2, 16546);
+    			add_location(main, file$8, 604, 0, 15700);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2473,7 +2473,8 @@ var app = (function () {
     							row: 1
     						},
     						amount: { label: "Размер", row: 1 }
-    					}
+    					},
+    					visible: data.case.length
     				},
     				nickname: {
     					label: "Дисциплины",
@@ -2483,11 +2484,8 @@ var app = (function () {
     						discipline: { label: "Дисциплина", row: 1 },
     						room: { label: "Room", row: 1 },
     						value: { label: "Nick", row: 1 }
-    					}
-    				},
-    				horizont: {
-    					type: "html",
-    					value: "<div class=\"filler\"/>"
+    					},
+    					visible: data.nickname.length
     				},
     				nicknameOld: {
     					label: "Архивные значения",
@@ -2502,81 +2500,92 @@ var app = (function () {
     						firstname: { label: "Имя", row: 1 },
     						lastname: { label: "Фамилия", row: 1 },
     						middlename: { label: "Отчество", row: 1 }
-    					}
-    				},
-    				horizont2: {
-    					type: "html",
-    					value: "<hr class=\"q-ma-none q-pa-none\"/>"
+    					},
+    					visible: data.FIO.length
     				},
     				gipsyteam: {
     					label: "Gipsy team",
     					type: "creatable",
-    					outlined: true
+    					outlined: true,
+    					visible: data.gipsyteam.length
     				},
     				skype: {
     					label: "Аккаунты Skype",
     					type: "creatable",
-    					outlined: true
+    					outlined: true,
+    					visible: data.skype.length
     				},
     				skrill: {
     					label: "Аккаунты skrill",
     					type: "creatable",
-    					outlined: true
+    					outlined: true,
+    					visible: data.skrill.length
     				},
     				neteller: {
     					label: "Аккаунты neteller",
     					type: "creatable",
-    					outlined: true
+    					outlined: true,
+    					visible: data.neteller.length
     				},
     				phone: {
     					label: "Телефоны",
     					type: "creatable",
-    					outlined: true
+    					outlined: true,
+    					visible: data.phone.length
     				},
     				pokerstrategy: {
     					label: "Poker Strategy",
     					type: "creatable",
-    					outlined: true
+    					outlined: true,
+    					visible: data.pokerstrategy.length
     				},
     				google: {
     					label: "Google аккаунты",
     					type: "creatable",
-    					outlined: true
+    					outlined: true,
+    					visible: data.google.length
     				},
     				mail: {
     					label: "Адреса e-mail",
     					type: "creatable",
-    					outlined: true
+    					outlined: true,
+    					visible: data.mail.length
     				},
     				vk: {
     					label: "Аккаунты vkontakte",
     					type: "creatable",
-    					outlined: true
+    					outlined: true,
+    					visible: data.vk.length
     				},
     				facebook: {
     					label: "Аккаунты facebook",
     					type: "creatable",
-    					outlined: true
+    					outlined: true,
+    					visible: data.facebook.length
     				},
     				blog: {
     					label: "Блоги",
     					type: "creatable",
-    					outlined: true
+    					outlined: true,
+    					visible: data.blog.length
     				},
     				instagram: {
     					label: "Аккаунты instagram",
     					type: "creatable",
-    					outlined: true
+    					outlined: true,
+    					visible: data.instagram.length
     				},
     				forum: {
     					label: "Форумы",
     					type: "creatable",
-    					outlined: true
+    					outlined: true,
+    					visible: data.forum.length
     				},
     				ecopayz: {
     					label: "Аккаунты ecopayz",
     					type: "creatable",
-    					outlined: true
+    					outlined: true,
+    					visible: data.ecopayz.length
     				},
     				location: {
     					label: "Адреса",
@@ -2586,7 +2595,8 @@ var app = (function () {
     						country: { label: "Страна", row: 1 },
     						town: { label: "Город", row: 1 },
     						address: { label: "Адрес", row: 1 }
-    					}
+    					},
+    					visible: data.location.length
     				},
     				webmoney: {
     					label: "Аккаунты Webmoney",
@@ -2599,9 +2609,14 @@ var app = (function () {
     							type: "creatable",
     							row: 1
     						}
-    					}
+    					},
+    					visible: data.webmoney.length
     				},
-    				comments: { label: "Комментарии", type: "textarea" }
+    				comments: {
+    					label: "Комментарии",
+    					type: "textarea",
+    					visible: data.comments
+    				}
     			},
     			title: "Просмотр записи",
     			buttons: null,
