@@ -7,6 +7,7 @@ exports.install = function () {
   ROUTE('GET /api/users/children', getChildren);
   ROUTE('GET /api/users/fullInfo', getFullInfo);
   ROUTE('GET /api/users/some', getSome);
+  ROUTE('GET /api/users/availible', getAvalible);
   ROUTE('PUT /api/users/updateAnoterUser', updateAnoterUser);
 };
 
@@ -135,5 +136,17 @@ async function getSome() {
     .promise()
 
 
+  return $.json({ data: users || [], status: 'OK' })
+}
+
+async function getAvalible() {
+  const $ = this
+  if (!$.user) return $.json({ status: 'REAUTH', msg: 'неверные данные пользователя' })
+  if ($.user.role === 'root') {
+    const users = await TABLE('users').find2().notin('id', $.user.id).fields('-password').promise()
+    return $.json({ data: users || [], status: 'OK' })
+  }
+  // TODO shall managers only get children users?
+  const users = await TABLE('users').find2().notin('role', 'root').notin('id', $.user.id).fields('-password').promise()
   return $.json({ data: users || [], status: 'OK' })
 }

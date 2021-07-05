@@ -551,11 +551,6 @@ function mountModal(id, data) {
         label: "Комментарии",
         type: 'textarea'
       },
-      old: {
-        type: 'checkbox',
-        label: 'Архивная запись',
-        hint: 'снимите флажок, если запись была отредактирована в новый формат'
-      },
     },
     title: "Просмотр записи",
     buttons: null,

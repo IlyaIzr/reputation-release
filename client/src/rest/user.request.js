@@ -88,3 +88,20 @@ export const getUsersByQuery = async (creds) => {
     return error
   }
 }
+
+export const getAvailibleUsers = async () => {
+  const options = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    },
+  }
+  try {
+    const response = await fetch(api + 'users/availible', options)
+    const res = response.json()
+    return res
+  } catch (error) {
+    return error
+  }
+}

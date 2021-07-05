@@ -1759,7 +1759,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (593:2) {#if error}
+    // (588:2) {#if error}
     function create_if_block_1$2(ctx) {
     	let t0;
     	let t1;
@@ -1770,7 +1770,7 @@ var app = (function () {
     			t0 = text(/*error*/ ctx[0]);
     			t1 = space();
     			br = element("br");
-    			add_location(br, file$8, 594, 4, 15086);
+    			add_location(br, file$8, 589, 4, 14919);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, t0, anchor);
@@ -1791,14 +1791,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1$2.name,
     		type: "if",
-    		source: "(593:2) {#if error}",
+    		source: "(588:2) {#if error}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (601:8) {#each fundOptions as fund}
+    // (596:8) {#each fundOptions as fund}
     function create_each_block(ctx) {
     	let option;
     	let t0_value = /*fund*/ ctx[16].name + "";
@@ -1814,7 +1814,7 @@ var app = (function () {
     			option.__value = option_value_value = /*fund*/ ctx[16].id;
     			option.value = option.__value;
     			attr_dev(option, "class", "item svelte-1in54i1");
-    			add_location(option, file$8, 601, 10, 15349);
+    			add_location(option, file$8, 596, 10, 15182);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, option, anchor);
@@ -1838,14 +1838,14 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(601:8) {#each fundOptions as fund}",
+    		source: "(596:8) {#each fundOptions as fund}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (613:6) {#if $user.role === "root" || isWriter()}
+    // (608:6) {#if $user.role === "root" || isWriter()}
     function create_if_block$5(ctx) {
     	let div;
     	let linkbutton;
@@ -1864,7 +1864,7 @@ var app = (function () {
     			div = element("div");
     			create_component(linkbutton.$$.fragment);
     			attr_dev(div, "class", "createContainer item svelte-1in54i1");
-    			add_location(div, file$8, 613, 8, 15702);
+    			add_location(div, file$8, 608, 8, 15535);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -1890,7 +1890,7 @@ var app = (function () {
     		block,
     		id: create_if_block$5.name,
     		type: "if",
-    		source: "(613:6) {#if $user.role === \\\"root\\\" || isWriter()}",
+    		source: "(608:6) {#if $user.role === \\\"root\\\" || isWriter()}",
     		ctx
     	});
 
@@ -1954,24 +1954,24 @@ var app = (function () {
     			div4 = element("div");
     			attr_dev(select, "class", "item svelte-1in54i1");
     			if (/*currentFund*/ ctx[1] === void 0) add_render_callback(() => /*select_change_handler*/ ctx[6].call(select));
-    			add_location(select, file$8, 599, 6, 15235);
+    			add_location(select, file$8, 594, 6, 15068);
     			attr_dev(input, "type", "text");
     			attr_dev(input, "placeholder", "Поиск записей");
     			attr_dev(input, "class", "svelte-1in54i1");
-    			add_location(input, file$8, 608, 8, 15518);
+    			add_location(input, file$8, 603, 8, 15351);
     			attr_dev(i, "class", "search link icon");
-    			add_location(i, file$8, 609, 8, 15597);
+    			add_location(i, file$8, 604, 8, 15430);
     			attr_dev(div0, "class", "ui icon input item svelte-1in54i1");
-    			add_location(div0, file$8, 607, 6, 15476);
+    			add_location(div0, file$8, 602, 6, 15309);
     			attr_dev(div1, "class", "userControls inline ui input svelte-1in54i1");
-    			add_location(div1, file$8, 597, 4, 15138);
+    			add_location(div1, file$8, 592, 4, 14971);
     			attr_dev(div2, "class", "tableControls");
-    			add_location(div2, file$8, 596, 2, 15105);
+    			add_location(div2, file$8, 591, 2, 14938);
     			attr_dev(div3, "id", "tableMountingPoint");
-    			add_location(div3, file$8, 620, 2, 15857);
+    			add_location(div3, file$8, 615, 2, 15690);
     			attr_dev(div4, "id", "modalPoint");
-    			add_location(div4, file$8, 621, 2, 15892);
-    			add_location(main, file$8, 591, 0, 15046);
+    			add_location(div4, file$8, 616, 2, 15725);
+    			add_location(main, file$8, 586, 0, 14879);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2572,12 +2572,7 @@ var app = (function () {
     						}
     					}
     				},
-    				comments: { label: "Комментарии", type: "textarea" },
-    				old: {
-    					type: "checkbox",
-    					label: "Архивная запись",
-    					hint: "снимите флажок, если запись была отредактирована в новый формат"
-    				}
+    				comments: { label: "Комментарии", type: "textarea" }
     			},
     			title: "Просмотр записи",
     			buttons: null,
@@ -2775,6 +2770,23 @@ var app = (function () {
       };
       try {
         const response = await fetch(api + 'users/some?creds=' + creds, options);
+        const res = response.json();
+        return res
+      } catch (error) {
+        return error
+      }
+    };
+
+    const getAvailibleUsers = async () => {
+      const options = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+      };
+      try {
+        const response = await fetch(api + 'users/availible', options);
         const res = response.json();
         return res
       } catch (error) {
@@ -3831,7 +3843,7 @@ var app = (function () {
     const { Object: Object_1$2 } = globals;
     const file$3 = "src\\fund\\EditFund.svelte";
 
-    // (473:2) {#if groupInfo}
+    // (472:2) {#if groupInfo}
     function create_if_block_4$1(ctx) {
     	let h5;
     	let t0;
@@ -3844,7 +3856,7 @@ var app = (function () {
     			t0 = text("Фонд ");
     			t1 = text(t1_value);
     			attr_dev(h5, "class", " svelte-neoc7b");
-    			add_location(h5, file$3, 473, 4, 12114);
+    			add_location(h5, file$3, 472, 4, 12253);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h5, anchor);
@@ -3863,14 +3875,14 @@ var app = (function () {
     		block,
     		id: create_if_block_4$1.name,
     		type: "if",
-    		source: "(473:2) {#if groupInfo}",
+    		source: "(472:2) {#if groupInfo}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (482:2) {#if error}
+    // (481:2) {#if error}
     function create_if_block_3$1(ctx) {
     	let t0;
     	let t1;
@@ -3881,7 +3893,7 @@ var app = (function () {
     			t0 = text(/*error*/ ctx[1]);
     			t1 = space();
     			br = element("br");
-    			add_location(br, file$3, 483, 4, 12578);
+    			add_location(br, file$3, 482, 4, 12717);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, t0, anchor);
@@ -3902,14 +3914,14 @@ var app = (function () {
     		block,
     		id: create_if_block_3$1.name,
     		type: "if",
-    		source: "(482:2) {#if error}",
+    		source: "(481:2) {#if error}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (492:22) 
+    // (491:22) 
     function create_if_block_2$1(ctx) {
     	let div0;
     	let t;
@@ -3921,9 +3933,9 @@ var app = (function () {
     			t = space();
     			div1 = element("div");
     			attr_dev(div0, "id", "usersTable");
-    			add_location(div0, file$3, 492, 4, 12768);
+    			add_location(div0, file$3, 491, 4, 12907);
     			attr_dev(div1, "id", "userEditor");
-    			add_location(div1, file$3, 493, 4, 12797);
+    			add_location(div1, file$3, 492, 4, 12936);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div0, anchor);
@@ -3941,14 +3953,14 @@ var app = (function () {
     		block,
     		id: create_if_block_2$1.name,
     		type: "if",
-    		source: "(492:22) ",
+    		source: "(491:22) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (489:22) 
+    // (488:22) 
     function create_if_block_1$1(ctx) {
     	let div0;
     	let t;
@@ -3960,9 +3972,9 @@ var app = (function () {
     			t = space();
     			div1 = element("div");
     			attr_dev(div0, "id", "addUsersForm");
-    			add_location(div0, file$3, 489, 4, 12676);
+    			add_location(div0, file$3, 488, 4, 12815);
     			attr_dev(div1, "id", "regAndAddUsersForm");
-    			add_location(div1, file$3, 490, 4, 12707);
+    			add_location(div1, file$3, 489, 4, 12846);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div0, anchor);
@@ -3980,14 +3992,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1$1.name,
     		type: "if",
-    		source: "(489:22) ",
+    		source: "(488:22) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (487:2) {#if tab === 0}
+    // (486:2) {#if tab === 0}
     function create_if_block$2(ctx) {
     	let div;
 
@@ -3995,7 +4007,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			attr_dev(div, "id", "editGroupForm");
-    			add_location(div, file$3, 487, 4, 12620);
+    			add_location(div, file$3, 486, 4, 12759);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -4009,7 +4021,7 @@ var app = (function () {
     		block,
     		id: create_if_block$2.name,
     		type: "if",
-    		source: "(487:2) {#if tab === 0}",
+    		source: "(486:2) {#if tab === 0}",
     		ctx
     	});
 
@@ -4066,14 +4078,14 @@ var app = (function () {
     			t7 = space();
     			if (if_block2) if_block2.c();
     			attr_dev(div0, "class", div0_class_value = "" + (null_to_empty(/*tab*/ ctx[0] === 0 ? "current" : "link-button") + " svelte-neoc7b"));
-    			add_location(div0, file$3, 476, 4, 12197);
+    			add_location(div0, file$3, 475, 4, 12336);
     			attr_dev(div1, "class", div1_class_value = "" + (null_to_empty(/*tab*/ ctx[0] === 1 ? "current" : "link-button") + " svelte-neoc7b"));
-    			add_location(div1, file$3, 477, 4, 12307);
+    			add_location(div1, file$3, 476, 4, 12446);
     			attr_dev(div2, "class", div2_class_value = "" + (null_to_empty(/*tab*/ ctx[0] === 2 ? "current" : "link-button") + " svelte-neoc7b"));
-    			add_location(div2, file$3, 478, 4, 12420);
+    			add_location(div2, file$3, 477, 4, 12559);
     			attr_dev(div3, "class", "navigation svelte-neoc7b");
-    			add_location(div3, file$3, 475, 2, 12167);
-    			add_location(main, file$3, 471, 0, 12083);
+    			add_location(div3, file$3, 474, 2, 12306);
+    			add_location(main, file$3, 470, 0, 12222);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -4207,6 +4219,7 @@ var app = (function () {
 
     	let groupInfo;
     	const usersObj = {};
+    	let availibleUsers = [];
     	let currentUser;
     	let selectedUser;
     	let prevRole;
@@ -4221,26 +4234,20 @@ var app = (function () {
     				discord: { label: "Сервер discord" },
     				owner: {
     					label: "Создатель",
-    					hint: "Начните вводить имя или e-mail",
-    					options: [
-    						{
-    							name: groupInfo.owner.label || "",
-    							id: groupInfo.owner.value || ""
-    						}
-    					],
+    					hint: "Начните вводить имя",
+    					options: availibleUsers,
     					type: "select",
-    					async onKeyDown(fb, c, val) {
-    						if (val && val.length > 2) {
-    							const res = await getUsersByQuery(val);
-
-    							// TBC
-    							if (res.status === "OK") {
-    								res.data.forEach(opt => opt.name = opt.username);
-    								fb.fields.owner.options = res.data;
-    								if (res.data.length) c.$refs.input.blur();
-    							}
-    						}
-    					},
+    					// async onKeyDown(fb, c, val) {
+    					//   if (val && val.length > 2) {
+    					//     const res = await getUsersByQuery(val);
+    					//     // TBC
+    					//     if (res.status === "OK") {
+    					//       res.data.forEach(opt => opt.name = opt.username)
+    					//       fb.fields.owner.options = res.data
+    					//       if (res.data.length) c.$refs.input.blur()
+    					//     }
+    					//   }
+    					// },
     					onInput(fb, c, val) {
     						const res = fb.fields.owner.options.find(opt => opt.id === val);
     						currentUser = res;
@@ -4298,22 +4305,22 @@ var app = (function () {
     			title: "Добавить зарегистрированных участников",
     			fields: {
     				user: {
-    					label: "Логин, discord или e-mail",
-    					hint: "Начните вводить логин, discord или e-mail (мин. 3 символа)",
-    					options: [{ name: "", id: "" }],
+    					label: "Пользователь",
+    					required: true,
+    					hint: "Начните вводить имя пользователя",
+    					options: availibleUsers,
     					type: "select",
-    					async onKeyDown(fb, c, val) {
-    						if (val && val.length > 2) {
-    							const res = await getUsersByQuery(val);
-
-    							// TBC
-    							if (res.status === "OK") {
-    								res.data.forEach(opt => opt.name = opt.username);
-    								fb.fields.user.options = res.data;
-    								if (res.data.length) c.$refs.input.blur();
-    							}
-    						}
-    					},
+    					// async onKeyDown(fb, c, val) {
+    					//   if (val && val.length > 2) {
+    					//     const res = await getUsersByQuery(val);
+    					//     // TBC
+    					//     if (res.status === "OK") {
+    					//       res.data.forEach(opt => opt.name = opt.username)
+    					//       if (res.data.length) fb.fields.user.options.push(...res.data)
+    					//       // if (res.data.length) c.$refs.input.blur()
+    					//     }
+    					//   }
+    					// },
     					onInput(fb, c, val) {
     						const res = fb.fields.user.options.find(opt => opt.id === val);
     						currentUser = res;
@@ -4568,6 +4575,8 @@ var app = (function () {
 
     	async function groupRequest() {
     		const response = await getFundFormated(id);
+    		const res = await getAvailibleUsers();
+    		if (res.data?.length) res.data.forEach(userObj => availibleUsers.push({ ...userObj, name: userObj.username }));
 
     		if (response.status === "OK") {
     			$$invalidate(2, groupInfo = response.data);
@@ -4613,6 +4622,7 @@ var app = (function () {
     		tick,
     		user,
     		createUser,
+    		getAvailibleUsers,
     		getUsersByQuery,
     		getFundFormated,
     		updateFundOwner,
@@ -4628,6 +4638,7 @@ var app = (function () {
     		options,
     		groupInfo,
     		usersObj,
+    		availibleUsers,
     		currentUser,
     		selectedUser,
     		prevRole,
@@ -4646,6 +4657,7 @@ var app = (function () {
     		if ("error" in $$props) $$invalidate(1, error = $$props.error);
     		if ("options" in $$props) options = $$props.options;
     		if ("groupInfo" in $$props) $$invalidate(2, groupInfo = $$props.groupInfo);
+    		if ("availibleUsers" in $$props) availibleUsers = $$props.availibleUsers;
     		if ("currentUser" in $$props) currentUser = $$props.currentUser;
     		if ("selectedUser" in $$props) selectedUser = $$props.selectedUser;
     		if ("prevRole" in $$props) prevRole = $$props.prevRole;

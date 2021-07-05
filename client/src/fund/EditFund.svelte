@@ -8,6 +8,7 @@ import {
 } from '../rest/store'
 import {
   createUser,
+  getAvailibleUsers,
   getUsersByQuery
 } from '../rest/user.request'
 import {
@@ -42,6 +43,7 @@ let options = [{
 ]
 let groupInfo
 const usersObj = {}
+let availibleUsers = []
 let currentUser
 let selectedUser
 let prevRole
@@ -68,23 +70,20 @@ function mountForm() {
       },
       owner: {
         label: "Создатель",
-        hint: "Начните вводить имя или e-mail",
-        options: [{
-          name: groupInfo.owner.label || "",
-          id: groupInfo.owner.value || "",
-        }, ],
+        hint: "Начните вводить имя",
+        options: availibleUsers,
         type: "select",
-        async onKeyDown(fb, c, val) {
-          if (val && val.length > 2) {
-            const res = await getUsersByQuery(val);
-            // TBC
-            if (res.status === "OK") {
-              res.data.forEach(opt => opt.name = opt.username)
-              fb.fields.owner.options = res.data
-              if (res.data.length) c.$refs.input.blur()
-            }
-          }
-        },
+        // async onKeyDown(fb, c, val) {
+        //   if (val && val.length > 2) {
+        //     const res = await getUsersByQuery(val);
+        //     // TBC
+        //     if (res.status === "OK") {
+        //       res.data.forEach(opt => opt.name = opt.username)
+        //       fb.fields.owner.options = res.data
+        //       if (res.data.length) c.$refs.input.blur()
+        //     }
+        //   }
+        // },
         onInput(fb, c, val) {
           const res = fb.fields.owner.options.find(opt => opt.id === val)
           currentUser = res
@@ -140,24 +139,22 @@ function mountAddUser() {
     title: "Добавить зарегистрированных участников",
     fields: {
       user: {
-        label: "Логин, discord или e-mail",
-        hint: "Начните вводить логин, discord или e-mail (мин. 3 символа)",
-        options: [{
-          name: "",
-          id: "",
-        }, ],
+        label: "Пользователь",
+        required: true,
+        hint: "Начните вводить имя пользователя",
+        options: availibleUsers,
         type: "select",
-        async onKeyDown(fb, c, val) {
-          if (val && val.length > 2) {
-            const res = await getUsersByQuery(val);
-            // TBC
-            if (res.status === "OK") {
-              res.data.forEach(opt => opt.name = opt.username)
-              fb.fields.user.options = res.data
-              if (res.data.length) c.$refs.input.blur()
-            }
-          }
-        },
+        // async onKeyDown(fb, c, val) {
+        //   if (val && val.length > 2) {
+        //     const res = await getUsersByQuery(val);
+        //     // TBC
+        //     if (res.status === "OK") {
+        //       res.data.forEach(opt => opt.name = opt.username)
+        //       if (res.data.length) fb.fields.user.options.push(...res.data)
+        //       // if (res.data.length) c.$refs.input.blur()
+        //     }
+        //   }
+        // },
         onInput(fb, c, val) {
           const res = fb.fields.user.options.find(opt => opt.id === val)
           currentUser = res
@@ -444,10 +441,12 @@ function mountUserEditor() {
 
 async function groupRequest() {
   const response = await getFundFormated(id);
+  const res = await getAvailibleUsers()
+  if (res.data?.length) res.data.forEach(userObj => availibleUsers.push({ ...userObj, name: userObj.username }))
   if (response.status === "OK") {
     groupInfo = response.data
     // Set users 
-    groupInfo.owner ?.value && (usersObj[groupInfo.owner.value] = 'owner');
+    groupInfo.owner?.value && (usersObj[groupInfo.owner.value] = 'owner');
     groupInfo.managers.forEach((e) => usersObj[e.value] = 'manager');
     groupInfo.users.forEach((e) => usersObj[e.value] = 'user');
     groupInfo.readonlys.forEach((e) => usersObj[e.value] = 'readonly');
