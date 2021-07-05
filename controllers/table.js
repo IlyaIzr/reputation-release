@@ -2,9 +2,9 @@ exports.install = function () {
   ROUTE('GET /api/table', getTable);
   ROUTE('POST /api/table/create', createNote);
   ROUTE('GET /api/table/note', getNote);
+  ROUTE('GET /api/table/archiveNote', getArchiveNote);
   ROUTE('DELETE /api/table/note', deleteNote);
   ROUTE('PUT /api/table/update', updateNote);
-
 };
 
 async function getTable() {
@@ -18,26 +18,10 @@ async function getTable() {
   const field = req.query.field || 'created'
   const { author } = req.query
 
-  // Regex corrections
-  // where = where.replace('*', '\\*')
-
-  // if (where && req.query?.id) {
-  //   var table = await TRow.find({ author: req.query?.id }).find({ $or: queryMonster }).sort({ [field]: order }).skip(page * limit).limit(Number(limit))
-  //   totalCount = await TRow.find({ author: req.query?.id }).find({ $or: queryMonster }).countDocuments((e, r) => totalCount = r)
-  //   last_page = totalCount ? Math.floor(totalCount / limit) : 1
-  // } else if (where) {
-  //   var table = await TRow.find({ $or: queryMonster }).sort({ [field]: order }).skip(page * limit).limit(Number(limit))
-  //   totalCount = await TRow.find({ $or: queryMonster }).countDocuments((e, r) => totalCount = r)
-  //   last_page = totalCount ? Math.floor(totalCount / limit) : 1
-  // } else if (req.query?.id) {
-  //   var table = await TRow.find({ author: req.query?.id }).sort({ [field]: order }).skip(page * limit).limit(Number(limit))
-  //   totalCount = await TRow.find({ author: req.query?.id }).countDocuments((e, r) => totalCount = r)
-  //   last_page = totalCount ? Math.floor(totalCount / limit) : 1
-  // } else {
   if (where || author) {
     const table = await NOSQL('arbitrages').find()
       .sort(field + "_" + order)
-      .join('_children', 'arb-history').on('id', 'id')
+      .join('_children', 'arb-history').on('parent', 'id')
       // .rule('doc.FIO[0].lastname.includes(arg.where)', { where }).
       // .skip(page * limit).sort(field + "_" + order).take(Number(limit))
       .promise(res => {
@@ -55,7 +39,7 @@ async function getTable() {
   }
   const table = await NOSQL('arbitrages').find()
     .skip(page * limit).sort(field + "_" + order).take(Number(limit))
-    .join('_children', 'arb-history').on('id', 'id')
+    .join('_children', 'arb-history').on('parent', 'id')
     .promise()
   // Delete empty _children  
   table.forEach(e => !e._children[0] ? delete e._children : null);
@@ -79,6 +63,7 @@ async function createNote() {
   data.created = created
   data.updated = created
 
+
   // Insert fund
   const builder = await NOSQL('arbitrages')
     // .insert({ ...data }, true)
@@ -95,6 +80,16 @@ async function getNote() {
   if (!id) return $.json({ status: 'ERR', msg: 'Отсутствует идентификатор записи' })
 
   const res = await NOSQL('arbitrages').one().id(id).promise()
+  if (!res) return $.json({ status: 'ERR', msg: "Неверный идентификатор записи или запись не существует" })
+  $.json({ status: 'OK', data: res })
+}
+
+async function getArchiveNote() {
+  const $ = this
+  const { id } = $.query
+  if (!id) return $.json({ status: 'ERR', msg: 'Отсутствует идентификатор записи' })
+
+  const res = await NOSQL('arb-history').one().id(id).promise()
   if (!res) return $.json({ status: 'ERR', msg: "Неверный идентификатор записи или запись не существует" })
   $.json({ status: 'OK', data: res })
 }
@@ -119,7 +114,8 @@ async function updateNote() {
 
   const previousNote = await NOSQL('arbitrages').one().id(id).promise()
   if (!previousNote) return $.json({ status: 'ERR', msg: 'Неверный идентификатор записи или запись не существует' })
-  previousNote.history = true
+  previousNote.parent = id
+  previousNote.id = UID()
   const copied = await NOSQL('arb-history').insert(previousNote, false).promise()
   if (!copied) return $.json({ status: 'ERR', msg: 'Непредвиденная ошибка архивирования записи' })
 

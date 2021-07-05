@@ -33,6 +33,24 @@ export const getNote = async (id) => {
     return error
   }
 }
+
+export const getArchiveNote = async (id) => {
+  const options = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    },
+  }
+  try {
+    const response = await fetch(api + 'table/archiveNote?id=' + id, options)
+    const res = response.json()
+    return res
+  } catch (error) {
+    return error
+  }
+}
+
 export async function createNote(data) {
   const options = {
     method: 'POST',

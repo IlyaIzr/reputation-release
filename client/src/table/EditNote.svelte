@@ -8,16 +8,16 @@
     user
   } from '../rest/store'
   import {
-    createNote, deleteNote, getNote, updateNote
+    createNote, deleteNote, getArchiveNote, getNote, updateNote
   } from '../rest/table.request'
   
   let creatableGroups = []
   let error = ""
 const params = new URLSearchParams(window.location.search)
 const id = params.get('id')
+const parent = params.get('parent')
   
   function mountForm(data) {
-    console.log('%c⧭', 'color: #7f7700', data);
     const formConfig = {
       fields: {
         author: {
@@ -25,7 +25,7 @@ const id = params.get('id')
           type: "select",
           options: creatableGroups,
           required: true,
-          disabled: true
+          disabled: $user.role !== 'root'
         },
   
         // Rest info
@@ -254,7 +254,7 @@ const id = params.get('id')
             }
           }
 
-          const response = await updateNote(req, id);
+          const response = await updateNote(req, parent || id);
           fb.fields.msg.value = response.msg
         },
       },
@@ -266,10 +266,17 @@ const id = params.get('id')
         }
       }
     };
+    if (parent) {
+      formConfig.title = 'Редактировать запись из архива'
+      delete formConfig.fields.delButton
+      delete formConfig.fields.old
+    }
     window.callForm2("#createNoteForm", data, formConfig);
   };
   onMount(async () => {
-    const res = await getNote(id)
+    let res
+    if (parent) res = await getArchiveNote(id)
+    else res = await getNote(id)
     if (res.status !== 'OK') return error = res.msg || res
 
     // if ($user.role === 'root') {

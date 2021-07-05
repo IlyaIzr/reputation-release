@@ -1693,6 +1693,24 @@ var app = (function () {
         return error
       }
     };
+
+    const getArchiveNote = async (id) => {
+      const options = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+      };
+      try {
+        const response = await fetch(api + 'table/archiveNote?id=' + id, options);
+        const res = response.json();
+        return res
+      } catch (error) {
+        return error
+      }
+    };
+
     async function createNote(data) {
       const options = {
         method: 'POST',
@@ -1759,7 +1777,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (588:2) {#if error}
+    // (594:2) {#if error}
     function create_if_block_1$2(ctx) {
     	let t0;
     	let t1;
@@ -1770,7 +1788,7 @@ var app = (function () {
     			t0 = text(/*error*/ ctx[0]);
     			t1 = space();
     			br = element("br");
-    			add_location(br, file$8, 589, 4, 14919);
+    			add_location(br, file$8, 595, 4, 15193);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, t0, anchor);
@@ -1791,14 +1809,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1$2.name,
     		type: "if",
-    		source: "(588:2) {#if error}",
+    		source: "(594:2) {#if error}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (596:8) {#each fundOptions as fund}
+    // (602:8) {#each fundOptions as fund}
     function create_each_block(ctx) {
     	let option;
     	let t0_value = /*fund*/ ctx[16].name + "";
@@ -1814,7 +1832,7 @@ var app = (function () {
     			option.__value = option_value_value = /*fund*/ ctx[16].id;
     			option.value = option.__value;
     			attr_dev(option, "class", "item svelte-1in54i1");
-    			add_location(option, file$8, 596, 10, 15182);
+    			add_location(option, file$8, 602, 10, 15456);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, option, anchor);
@@ -1838,14 +1856,14 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(596:8) {#each fundOptions as fund}",
+    		source: "(602:8) {#each fundOptions as fund}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (608:6) {#if $user.role === "root" || isWriter()}
+    // (614:6) {#if $user.role === "root" || isWriter()}
     function create_if_block$5(ctx) {
     	let div;
     	let linkbutton;
@@ -1864,7 +1882,7 @@ var app = (function () {
     			div = element("div");
     			create_component(linkbutton.$$.fragment);
     			attr_dev(div, "class", "createContainer item svelte-1in54i1");
-    			add_location(div, file$8, 608, 8, 15535);
+    			add_location(div, file$8, 614, 8, 15809);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -1890,7 +1908,7 @@ var app = (function () {
     		block,
     		id: create_if_block$5.name,
     		type: "if",
-    		source: "(608:6) {#if $user.role === \\\"root\\\" || isWriter()}",
+    		source: "(614:6) {#if $user.role === \\\"root\\\" || isWriter()}",
     		ctx
     	});
 
@@ -1954,24 +1972,24 @@ var app = (function () {
     			div4 = element("div");
     			attr_dev(select, "class", "item svelte-1in54i1");
     			if (/*currentFund*/ ctx[1] === void 0) add_render_callback(() => /*select_change_handler*/ ctx[6].call(select));
-    			add_location(select, file$8, 594, 6, 15068);
+    			add_location(select, file$8, 600, 6, 15342);
     			attr_dev(input, "type", "text");
     			attr_dev(input, "placeholder", "Поиск записей");
     			attr_dev(input, "class", "svelte-1in54i1");
-    			add_location(input, file$8, 603, 8, 15351);
+    			add_location(input, file$8, 609, 8, 15625);
     			attr_dev(i, "class", "search link icon");
-    			add_location(i, file$8, 604, 8, 15430);
+    			add_location(i, file$8, 610, 8, 15704);
     			attr_dev(div0, "class", "ui icon input item svelte-1in54i1");
-    			add_location(div0, file$8, 602, 6, 15309);
+    			add_location(div0, file$8, 608, 6, 15583);
     			attr_dev(div1, "class", "userControls inline ui input svelte-1in54i1");
-    			add_location(div1, file$8, 592, 4, 14971);
+    			add_location(div1, file$8, 598, 4, 15245);
     			attr_dev(div2, "class", "tableControls");
-    			add_location(div2, file$8, 591, 2, 14938);
+    			add_location(div2, file$8, 597, 2, 15212);
     			attr_dev(div3, "id", "tableMountingPoint");
-    			add_location(div3, file$8, 615, 2, 15690);
+    			add_location(div3, file$8, 621, 2, 15964);
     			attr_dev(div4, "id", "modalPoint");
-    			add_location(div4, file$8, 616, 2, 15725);
-    			add_location(main, file$8, 586, 0, 14879);
+    			add_location(div4, file$8, 622, 2, 15999);
+    			add_location(main, file$8, 592, 0, 15153);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2179,30 +2197,41 @@ var app = (function () {
     						formatter(cell) {
     							const id = cell._cell.row.data.id;
     							const author = cell._cell.row.data.author;
-    							const a = document.createElement("i");
+    							const a = document.createElement("a");
     							a.className = "linkToRow material-icons notranslate";
+    							a.innerText = "create";
+    							a.style.textDecoration = "none";
 
-    							if (cell._cell.row.data.history) {
-    								a.addEventListener("click", () => {
-    									mountModal(id, cell._cell.row.data);
-    								});
-
-    								a.innerText = "visibility";
+    							// Case root && has parent
+    							if (cell._cell.row.data.parent && $user.role === "root") {
+    								a.href = "./editNote?id=" + id + "&parent=" + cell._cell.row.data.parent;
     								return a;
     							}
 
-    							if ($user.role === "root" || $user.role === "admin" || $fundRights[author] && $fundRights[author] !== "readonly") {
-    								a.addEventListener("click", () => goTo("/editNote", "id", id));
-    								a.innerText = "create";
-    								return a;
-    							} else {
-    								a.addEventListener("click", () => {
-    									mountModal(id, cell._cell.row.data);
-    								});
-
-    								a.innerText = "visibility";
+    							// Case can edit
+    							if ($user.role === "root" || $fundRights[author] && $fundRights[author] !== "readonly") {
+    								a.href = "./editNote?id=" + id;
     								return a;
     							}
+
+    							// {
+    							//   a.addEventListener("click", () =>
+    							//     goTo("/editNote", "id", id)
+    							//   );
+    							//   a.innerText = "create";
+    							//   return a;
+    							// }
+    							// Case draw modal
+    							const i = document.createElement("i");
+
+    							i.className = "linkToRow material-icons notranslate";
+    							i.innerText = "visibility";
+
+    							i.addEventListener("click", () => {
+    								mountModal(id, cell._cell.row.data);
+    							});
+
+    							return i;
     						},
     						headerSort: false
     					},
@@ -3187,7 +3216,7 @@ var app = (function () {
 
     /* src\user\CreateUser.svelte generated by Svelte v3.38.2 */
 
-    const { Object: Object_1$4, console: console_1$1 } = globals;
+    const { Object: Object_1$4, console: console_1 } = globals;
     const file$6 = "src\\user\\CreateUser.svelte";
 
     function create_fragment$6(ctx) {
@@ -3306,7 +3335,7 @@ var app = (function () {
     	const writable_props = [];
 
     	Object_1$4.keys($$props).forEach(key => {
-    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1$1.warn(`<CreateUser> was created with unknown prop '${key}'`);
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1.warn(`<CreateUser> was created with unknown prop '${key}'`);
     	});
 
     	$$self.$capture_state = () => ({
@@ -4984,11 +5013,11 @@ var app = (function () {
 
     /* src\table\EditNote.svelte generated by Svelte v3.38.2 */
 
-    const { Object: Object_1, console: console_1 } = globals;
+    const { Object: Object_1 } = globals;
 
     const file$1 = "src\\table\\EditNote.svelte";
 
-    // (292:2) {#if error}
+    // (299:2) {#if error}
     function create_if_block$1(ctx) {
     	let t;
 
@@ -5011,7 +5040,7 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(292:2) {#if error}",
+    		source: "(299:2) {#if error}",
     		ctx
     	});
 
@@ -5029,7 +5058,7 @@ var app = (function () {
     			t = space();
     			div = element("div");
     			attr_dev(div, "id", "createNoteForm");
-    			add_location(div, file$1, 294, 2, 7102);
+    			add_location(div, file$1, 301, 2, 7356);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -5086,10 +5115,9 @@ var app = (function () {
     	let error = "";
     	const params = new URLSearchParams(window.location.search);
     	const id = params.get("id");
+    	const parent = params.get("parent");
 
     	function mountForm(data) {
-    		console.log("%c⧭", "color: #7f7700", data);
-
     		const formConfig = {
     			fields: {
     				author: {
@@ -5097,7 +5125,7 @@ var app = (function () {
     					type: "select",
     					options: creatableGroups,
     					required: true,
-    					disabled: true
+    					disabled: $user.role !== "root"
     				},
     				// Rest info
     				case: {
@@ -5273,7 +5301,7 @@ var app = (function () {
     						}
     					}
 
-    					const response = await updateNote(req, id);
+    					const response = await updateNote(req, parent || id);
     					fb.fields.msg.value = response.msg;
     				}
     			},
@@ -5283,13 +5311,20 @@ var app = (function () {
     			}
     		};
 
+    		if (parent) {
+    			formConfig.title = "Редактировать запись из архива";
+    			delete formConfig.fields.delButton;
+    			delete formConfig.fields.old;
+    		}
+
     		window.callForm2("#createNoteForm", data, formConfig);
     	}
 
     	
 
     	onMount(async () => {
-    		const res = await getNote(id);
+    		let res;
+    		if (parent) res = await getArchiveNote(id); else res = await getNote(id);
     		if (res.status !== "OK") return $$invalidate(0, error = res.msg || res);
 
     		// if ($user.role === 'root') {
@@ -5304,7 +5339,7 @@ var app = (function () {
     	const writable_props = [];
 
     	Object_1.keys($$props).forEach(key => {
-    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1.warn(`<EditNote> was created with unknown prop '${key}'`);
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<EditNote> was created with unknown prop '${key}'`);
     	});
 
     	$$self.$capture_state = () => ({
@@ -5314,12 +5349,14 @@ var app = (function () {
     		user,
     		createNote,
     		deleteNote,
+    		getArchiveNote,
     		getNote,
     		updateNote,
     		creatableGroups,
     		error,
     		params,
     		id,
+    		parent,
     		mountForm,
     		$user,
     		$fundNames

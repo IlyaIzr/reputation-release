@@ -76,33 +76,39 @@ function mountTable(data = [], last_page) {
         formatter: function(cell) {
           const id = cell._cell.row.data.id;
           const author = cell._cell.row.data.author;
-          const a = document.createElement("i");
-          a.className =
-            "linkToRow material-icons notranslate";
-          if (cell._cell.row.data.history) {            
-            a.addEventListener("click", () => {
-              mountModal(id, cell._cell.row.data)
-            });
-            a.innerText = "visibility";
+          const a = document.createElement("a")
+          a.className = "linkToRow material-icons notranslate";  
+          a.innerText = "create";
+          a.style.textDecoration = 'none'
+          // Case root && has parent
+          if (cell._cell.row.data.parent && $user.role === "root") {      
+            a.href = "./editNote?id=" + id + "&parent=" + cell._cell.row.data.parent
             return a;
           }
-          if (
-            $user.role === "root" ||
-            $user.role === "admin" ||
-            ($fundRights[author] && $fundRights[author] !== "readonly")
+          
+          // Case can edit
+          if ( $user.role === "root" ||
+            ( $fundRights[author] && $fundRights[author] !== "readonly")
           ) {
-            a.addEventListener("click", () =>
-              goTo("/editNote", "id", id)
-            );
-            a.innerText = "create";
-            return a;
-          } else {
-            a.addEventListener("click", () => {
-              mountModal(id, cell._cell.row.data)
-            });
-            a.innerText = "visibility";
-            return a;
+            a.href = "./editNote?id=" + id
+            return a
           }
+          // {
+          //   a.addEventListener("click", () =>
+          //     goTo("/editNote", "id", id)
+          //   );
+          //   a.innerText = "create";
+          //   return a;
+          // }
+
+          // Case draw modal
+          const i = document.createElement("i")
+          i.className = "linkToRow material-icons notranslate"
+          i.innerText = "visibility"         
+          i.addEventListener("click", () => {
+            mountModal(id, cell._cell.row.data)
+          });
+          return i
         },
         headerSort: false,
       },
