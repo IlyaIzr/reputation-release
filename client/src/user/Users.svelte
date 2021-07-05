@@ -9,6 +9,7 @@ import LinkButton from '../LinkButton.svelte'
 
 import {
   fundNames,
+  fundRights,
   goTo,
   user
 } from '../rest/store';
@@ -22,7 +23,7 @@ let message
 let localFunds = $fundNames
 
 onMount(async () => {
-  [userInfo, message] = await getUsers($user);
+  [userInfo, message] = await getUsers($user, $fundRights);
   initUserInfo = [...userInfo]
 
   if (userInfo) mountTable()
@@ -33,7 +34,7 @@ function mountTable() {
     row.index = i;
     return row;
   });
-  new window.Tabulator("#tableMountingPoint", {
+  if (data.length) new window.Tabulator("#tableMountingPoint", {
     data,
     layout: "fitDataTable",
     pagination: "local",

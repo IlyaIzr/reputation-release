@@ -777,7 +777,7 @@ var app = (function () {
     			div = element("div");
     			div.textContent = "Выйти";
     			attr_dev(div, "class", "link-button svelte-dqos1q");
-    			add_location(div, file$c, 24, 4, 634);
+    			add_location(div, file$c, 24, 4, 644);
     		},
     		m: function mount(target, anchor) {
     			mount_component(navbutton, target, anchor);
@@ -972,7 +972,7 @@ var app = (function () {
     			nav = element("nav");
     			if_block.c();
     			attr_dev(nav, "class", "svelte-dqos1q");
-    			add_location(nav, file$c, 15, 0, 349);
+    			add_location(nav, file$c, 15, 0, 359);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1051,7 +1051,7 @@ var app = (function () {
     		if (res.status === "OK") {
     			set_store_value(user, $user = { children: [] }, $user);
     			set_store_value(fundRights, $fundRights = {}, $fundRights);
-    			goTo("/login");
+    			goTo("/login", "a", "a");
     		}
     	}
 
@@ -1108,23 +1108,6 @@ var app = (function () {
         return error
       }
     }
-
-    const getFundMembers = async (id) => {
-      const options = {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-        },
-      };
-      try {
-        const response = await fetch(api + 'funds/getMembers?id=' + id, options);
-        const res = response.json();
-        return res
-      } catch (error) {
-        return error
-      }
-    };
 
     const getFunds = async () => {
       const options = {
@@ -2839,7 +2822,7 @@ var app = (function () {
     };
 
     async function getUsers(user, funds) {
-      let userInfo;
+      let userInfo = [];
 
 
       // Root case
@@ -2854,24 +2837,25 @@ var app = (function () {
 
       // Manager case
 
-      const controledGroups = [];
-      Object.entries(funds).forEach((keyRolePair) => {
-        if (keyRolePair[1] === "owner" || keyRolePair[1] === "manager")
-          controledGroups.push(keyRolePair[0]);
-      });
+      // const controledGroups = [];
+      // Object.entries(funds).forEach((keyRolePair) => {
+      //   if (keyRolePair[1] === "owner" || keyRolePair[1] === "manager")
+      //     controledGroups.push(keyRolePair[0]);
+      // });
 
-      if (controledGroups.length) {
-        await Promise.all(
-          controledGroups.map(async (id) => {
-            const res = await getFundMembers(id);
-            if (res.status === "OK") {
-              userInfo = res.data || [];
-            }
+      // if (controledGroups.length) {
+      //   await Promise.all(
+      //     controledGroups.map(async (id) => {
+      //       const res = await getFundMembers(id);
+      //       if (res.status === "OK") {
+      //         userInfo = res.data || []
+      //         console.log('%c⧭', 'color: #607339', userInfo);
+      //       }
 
-            else return [userInfo, res.msg || res]
-          })
-        );
-      }
+      //       else return [userInfo, res.msg || res]
+      //     })
+      //   );
+      // }
 
       const children = user.children;
       if (children?.length) {
@@ -2895,7 +2879,7 @@ var app = (function () {
     const { Object: Object_1$5 } = globals;
     const file$7 = "src\\user\\Users.svelte";
 
-    // (140:2) {#if $user.role === "root"}
+    // (141:2) {#if $user.role === "root"}
     function create_if_block$4(ctx) {
     	let div;
     	let linkbutton;
@@ -2914,7 +2898,7 @@ var app = (function () {
     			div = element("div");
     			create_component(linkbutton.$$.fragment);
     			attr_dev(div, "class", "createContainer svelte-12b68td");
-    			add_location(div, file$7, 140, 4, 3432);
+    			add_location(div, file$7, 141, 4, 3477);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -2940,7 +2924,7 @@ var app = (function () {
     		block,
     		id: create_if_block$4.name,
     		type: "if",
-    		source: "(140:2) {#if $user.role === \\\"root\\\"}",
+    		source: "(141:2) {#if $user.role === \\\"root\\\"}",
     		ctx
     	});
 
@@ -2975,15 +2959,15 @@ var app = (function () {
     			attr_dev(input, "type", "text");
     			attr_dev(input, "placeholder", "Поиск пользователей");
     			attr_dev(input, "class", "svelte-12b68td");
-    			add_location(input, file$7, 136, 4, 3274);
+    			add_location(input, file$7, 137, 4, 3319);
     			attr_dev(i, "class", "search link icon");
-    			add_location(i, file$7, 137, 4, 3355);
+    			add_location(i, file$7, 138, 4, 3400);
     			attr_dev(div0, "class", "ui icon input item");
-    			add_location(div0, file$7, 135, 2, 3236);
+    			add_location(div0, file$7, 136, 2, 3281);
     			attr_dev(div1, "class", "userControls inline svelte-12b68td");
-    			add_location(div1, file$7, 134, 0, 3199);
+    			add_location(div1, file$7, 135, 0, 3244);
     			attr_dev(div2, "id", "tableMountingPoint");
-    			add_location(div2, file$7, 145, 0, 3559);
+    			add_location(div2, file$7, 146, 0, 3604);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -3060,10 +3044,13 @@ var app = (function () {
     function instance$7($$self, $$props, $$invalidate) {
     	let $fundNames;
     	let $user;
+    	let $fundRights;
     	validate_store(fundNames, "fundNames");
     	component_subscribe($$self, fundNames, $$value => $$invalidate(5, $fundNames = $$value));
     	validate_store(user, "user");
     	component_subscribe($$self, user, $$value => $$invalidate(0, $user = $$value));
+    	validate_store(fundRights, "fundRights");
+    	component_subscribe($$self, fundRights, $$value => $$invalidate(6, $fundRights = $$value));
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("Users", slots, []);
     	let userInfo;
@@ -3083,7 +3070,7 @@ var app = (function () {
     			return row;
     		});
 
-    		new window.Tabulator("#tableMountingPoint",
+    		if (data.length) new window.Tabulator("#tableMountingPoint",
     		{
     				data,
     				layout: "fitDataTable",
@@ -3188,6 +3175,7 @@ var app = (function () {
     		userRightsTranslation,
     		LinkButton,
     		fundNames,
+    		fundRights,
     		goTo,
     		user,
     		getUsers,
@@ -3198,7 +3186,8 @@ var app = (function () {
     		mountTable,
     		onFilter,
     		$fundNames,
-    		$user
+    		$user,
+    		$fundRights
     	});
 
     	$$self.$inject_state = $$props => {

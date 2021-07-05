@@ -7,7 +7,7 @@ async function logOut() {
   if (res.status === 'OK') {
     $user = {children: []}
     $fundRights = {}
-    goTo('/login')
+    goTo('/login', 'a', 'a')
   }
 }
 

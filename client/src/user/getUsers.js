@@ -1,9 +1,9 @@
-import { getAllUsers } from '../rest/user.request'
+import { getAllUsers, getAvailibleUsers } from '../rest/user.request'
 import { getFundMembers } from '../rest/fund.request'
 
 
 export async function getUsers(user, funds) {
-  let userInfo
+  let userInfo = []
 
 
   // Root case
@@ -18,24 +18,25 @@ export async function getUsers(user, funds) {
 
   // Manager case
 
-  const controledGroups = [];
-  Object.entries(funds).forEach((keyRolePair) => {
-    if (keyRolePair[1] === "owner" || keyRolePair[1] === "manager")
-      controledGroups.push(keyRolePair[0]);
-  });
+  // const controledGroups = [];
+  // Object.entries(funds).forEach((keyRolePair) => {
+  //   if (keyRolePair[1] === "owner" || keyRolePair[1] === "manager")
+  //     controledGroups.push(keyRolePair[0]);
+  // });
 
-  if (controledGroups.length) {
-    await Promise.all(
-      controledGroups.map(async (id) => {
-        const res = await getFundMembers(id);
-        if (res.status === "OK") {
-          userInfo = res.data || []
-        }
+  // if (controledGroups.length) {
+  //   await Promise.all(
+  //     controledGroups.map(async (id) => {
+  //       const res = await getFundMembers(id);
+  //       if (res.status === "OK") {
+  //         userInfo = res.data || []
+  //         console.log('%c⧭', 'color: #607339', userInfo);
+  //       }
 
-        else return [userInfo, res.msg || res]
-      })
-    );
-  }
+  //       else return [userInfo, res.msg || res]
+  //     })
+  //   );
+  // }
 
   const children = user.children;
   if (children?.length) {
