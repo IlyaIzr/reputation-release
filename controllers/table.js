@@ -30,7 +30,7 @@ async function getTable() {
   })()
   if (!field) field = 'updated'
   if (!order) order = 'desc'
-  console.log('%c⧭', 'color: #00bf00', field, order);
+  // console.log('%c⧭', 'color: #00bf00', field, order);
 
 
 

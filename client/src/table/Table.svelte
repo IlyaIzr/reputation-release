@@ -83,7 +83,7 @@ function mountTable(data = [], last_page) {
           a.className = "linkToRow material-icons notranslate";  
           a.innerText = "create";
           a.style.textDecoration = 'none'
-          
+
           // Case root && has parent
           if (cell._cell.row.data.parent && $user.role === "root") {      
             a.href = "./editNote?id=" + id + "&parent=" + cell._cell.row.data.parent
@@ -364,8 +364,6 @@ function mountTable(data = [], last_page) {
       this.redraw(true);
     },
   });
-  
-  console.log('%c⧭', 'color: #ff0000', table.getSorters());
 
 }
 

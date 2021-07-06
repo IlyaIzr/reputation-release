@@ -56,7 +56,6 @@ export const createFund = {
       let ownId
       user.subscribe(val => ownId = val.id)
 
-      console.log('%c⧭', 'color: #364cd9', ownId);
       // Todo
       const cleaned = {
         owner: ownId
@@ -66,7 +65,6 @@ export const createFund = {
       }
 
 
-      console.log('%c⧭', 'color: #807160', cleaned);
       const res = await insertFund(cleaned);
       fb.fields.msg.value = res.msg;
       if (res.status === 'OK') {
