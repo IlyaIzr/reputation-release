@@ -31,24 +31,12 @@ onMount(async () => {
 });
 
 function mountTable() {
-  const data = userInfo.map((row, i) => {
-    row.index = i;
-    return row;
-  });
-  if (data.length) new window.Tabulator("#tableMountingPoint", {
-    data,
+  if (userInfo.length) new window.Tabulator("#tableMountingPoint", {
+    data: userInfo,
     layout: "fitDataTable",
     pagination: "local",
     paginationSize: 25,
-    columns: [{
-        title: "#",
-        field: "index",
-        sorter: "number",
-        cellClick: function(e, cell) {
-          const id = cell._cell.row.data.userProps.id;
-          goTo('/editUser', "id", id)
-        },
-      },
+    columns: [
       {
         title: " ",
         formatter: function(cell) {

@@ -1760,7 +1760,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (611:2) {#if error}
+    // (619:2) {#if error}
     function create_if_block_1$2(ctx) {
     	let t0;
     	let t1;
@@ -1771,7 +1771,7 @@ var app = (function () {
     			t0 = text(/*error*/ ctx[0]);
     			t1 = space();
     			br = element("br");
-    			add_location(br, file$8, 612, 4, 15973);
+    			add_location(br, file$8, 620, 4, 16211);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, t0, anchor);
@@ -1792,14 +1792,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1$2.name,
     		type: "if",
-    		source: "(611:2) {#if error}",
+    		source: "(619:2) {#if error}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (619:8) {#each fundOptions as fund}
+    // (627:8) {#each fundOptions as fund}
     function create_each_block(ctx) {
     	let option;
     	let t0_value = /*fund*/ ctx[16].name + "";
@@ -1815,7 +1815,7 @@ var app = (function () {
     			option.__value = option_value_value = /*fund*/ ctx[16].id;
     			option.value = option.__value;
     			attr_dev(option, "class", "item svelte-1in54i1");
-    			add_location(option, file$8, 619, 10, 16236);
+    			add_location(option, file$8, 627, 10, 16474);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, option, anchor);
@@ -1839,14 +1839,14 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(619:8) {#each fundOptions as fund}",
+    		source: "(627:8) {#each fundOptions as fund}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (631:6) {#if $user.role === "root" || isWriter()}
+    // (639:6) {#if $user.role === "root" || isWriter()}
     function create_if_block$5(ctx) {
     	let div;
     	let linkbutton;
@@ -1865,7 +1865,7 @@ var app = (function () {
     			div = element("div");
     			create_component(linkbutton.$$.fragment);
     			attr_dev(div, "class", "createContainer item svelte-1in54i1");
-    			add_location(div, file$8, 631, 8, 16589);
+    			add_location(div, file$8, 639, 8, 16827);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -1891,7 +1891,7 @@ var app = (function () {
     		block,
     		id: create_if_block$5.name,
     		type: "if",
-    		source: "(631:6) {#if $user.role === \\\"root\\\" || isWriter()}",
+    		source: "(639:6) {#if $user.role === \\\"root\\\" || isWriter()}",
     		ctx
     	});
 
@@ -1955,24 +1955,24 @@ var app = (function () {
     			div4 = element("div");
     			attr_dev(select, "class", "item svelte-1in54i1");
     			if (/*currentFund*/ ctx[1] === void 0) add_render_callback(() => /*select_change_handler*/ ctx[6].call(select));
-    			add_location(select, file$8, 617, 6, 16122);
+    			add_location(select, file$8, 625, 6, 16360);
     			attr_dev(input, "type", "text");
     			attr_dev(input, "placeholder", "Поиск записей");
     			attr_dev(input, "class", "svelte-1in54i1");
-    			add_location(input, file$8, 626, 8, 16405);
+    			add_location(input, file$8, 634, 8, 16643);
     			attr_dev(i, "class", "search link icon");
-    			add_location(i, file$8, 627, 8, 16484);
+    			add_location(i, file$8, 635, 8, 16722);
     			attr_dev(div0, "class", "ui icon input item svelte-1in54i1");
-    			add_location(div0, file$8, 625, 6, 16363);
+    			add_location(div0, file$8, 633, 6, 16601);
     			attr_dev(div1, "class", "userControls inline ui input svelte-1in54i1");
-    			add_location(div1, file$8, 615, 4, 16025);
+    			add_location(div1, file$8, 623, 4, 16263);
     			attr_dev(div2, "class", "tableControls");
-    			add_location(div2, file$8, 614, 2, 15992);
+    			add_location(div2, file$8, 622, 2, 16230);
     			attr_dev(div3, "id", "tableMountingPoint");
-    			add_location(div3, file$8, 638, 2, 16744);
+    			add_location(div3, file$8, 646, 2, 16982);
     			attr_dev(div4, "id", "modalPoint");
-    			add_location(div4, file$8, 639, 2, 16779);
-    			add_location(main, file$8, 609, 0, 15933);
+    			add_location(div4, file$8, 647, 2, 17017);
+    			add_location(main, file$8, 617, 0, 16171);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2149,7 +2149,8 @@ var app = (function () {
     			return {
     				title: label,
     				field: name,
-    				formatter: arrayFormatter
+    				formatter: arrayFormatter,
+    				headerSort: false
     			};
     		};
 
@@ -2170,6 +2171,7 @@ var app = (function () {
     				},
     				columnMaxWidth: 300,
     				dataTree: true,
+    				headerSort: false,
     				// groupBy: "fundName",
     				columns: [
     					{
@@ -2177,7 +2179,7 @@ var app = (function () {
     						field: "id",
     						frozen: true,
     						minWidth: 0,
-    						width: 54,
+    						width: 66,
     						formatter(cell) {
     							const id = cell._cell.row.data.id;
     							const author = cell._cell.row.data.author;
@@ -2187,24 +2189,18 @@ var app = (function () {
     							a.style.textDecoration = "none";
 
     							// Case root && has parent
-    							// TODO
-    							// if (cell._cell.row.data.parent && $user.role === "root") {      
-    							//   a.href = "./editNote?id=" + id + "&parent=" + cell._cell.row.data.parent
-    							//   return a;
-    							// }
+    							if (cell._cell.row.data.parent && $user.role === "root") {
+    								a.href = "./editNote?id=" + id + "&parent=" + cell._cell.row.data.parent;
+    								return a;
+    							}
+
     							// Case can edit
-    							if ($user.role === "root" || $fundRights[author] && $fundRights[author] !== "readonly") {
+    							if ($user.role === "root" || // fund member, not readonly, not history
+    							$fundRights[author] && $fundRights[author] !== "readonly" && !cell._cell.row.data.parent) {
     								a.href = "./editNote?id=" + id;
     								return a;
     							}
 
-    							// {
-    							//   a.addEventListener("click", () =>
-    							//     goTo("/editNote", "id", id)
-    							//   );
-    							//   a.innerText = "create";
-    							//   return a;
-    							// }
     							// Case draw modal
     							const i = document.createElement("i");
 
@@ -2222,6 +2218,7 @@ var app = (function () {
     					{
     						title: "Фонд",
     						field: "author",
+    						headerSort: false,
     						formatter: cell => {
     							const author = cell._cell.row.data.author;
     							return $fundNames[author];
@@ -2234,7 +2231,8 @@ var app = (function () {
     							if (cell._cell.row.data.old) {
     								return "архив";
     							} else return moment(cell._cell.row.data.created).format("MM-DD-YYYY");
-    						}
+    						},
+    						headerSort: true
     					},
     					{
     						title: "Обновлено",
@@ -2243,7 +2241,8 @@ var app = (function () {
     							if (cell._cell.row.data.old) {
     								return "архив";
     							} else return moment(cell._cell.row.data.updated).format("MM-DD-YYYY");
-    						}
+    						},
+    						headerSort: true
     					},
     					{
     						title: "Автор",
@@ -2255,6 +2254,7 @@ var app = (function () {
     						title: "Арбитраж",
     						field: "case",
     						width: 150,
+    						headerSort: false,
     						formatter(cell, formatterParams, onRendered) {
     							const mappos = cell._cell.row.data.case.map(caseObj => {
     								return caseObj.arbitrage;
@@ -2272,6 +2272,7 @@ var app = (function () {
     						title: "Ники",
     						field: "nickname",
     						width: 350,
+    						headerSort: false,
     						formatter(cell) {
     							const mappos = cell._cell.row.data.nickname.map(obj => {
     								if (cell._cell.row.data.old) return cell._cell.row.data.nicknameOld; else if (obj.room) return obj.room + (obj.value && " - " + obj.value); else return obj.value;
@@ -2288,6 +2289,7 @@ var app = (function () {
     						title: "Дисциплина",
     						field: "nickname",
     						width: 150,
+    						headerSort: false,
     						formatter(cell, formatterParams, onRendered) {
     							const mappos = cell._cell.row.data.nickname.map(nickObj => {
     								return nickObj.discipline; // !
@@ -2301,6 +2303,7 @@ var app = (function () {
     						title: "ФИО",
     						field: "FIO",
     						width: 250,
+    						headerSort: false,
     						formatter(cell, formatterParams, onRendered) {
     							const mappos = cell._cell.row.data.FIO.map(fioObj => {
     								return (fioObj.lastname || "") + " " + (fioObj.firstname || "") + " " + (fioObj.middlename || "");
@@ -2313,6 +2316,7 @@ var app = (function () {
     						title: "Описание",
     						field: "case",
     						width: 250,
+    						headerSort: false,
     						formatter(cell, formatterParams, onRendered) {
     							const mappos = cell._cell.row.data.case.map(caseObj => {
     								return caseObj.descr;
@@ -2330,6 +2334,7 @@ var app = (function () {
     						title: "Ущерб ($)",
     						field: "case",
     						width: 100,
+    						headerSort: false,
     						formatter(cell, formatterParams, onRendered) {
     							const mappos = cell._cell.row.data.case.map(caseObj => {
     								return caseObj.amount;
@@ -2351,6 +2356,7 @@ var app = (function () {
     					{
     						title: "Адреса",
     						field: "location",
+    						headerSort: false,
     						formatter(cell, formatterParams, onRendered) {
     							const mappos = cell._cell.row.data.location.map(obj => {
     								return obj.country + " " + obj.town + " " + obj.address;
@@ -2371,6 +2377,7 @@ var app = (function () {
     					{
     						title: "Webmoney",
     						field: "webmoney",
+    						headerSort: false,
     						formatter(cell, formatterParams, onRendered) {
     							const mappos = cell._cell.row.data.webmoney.map(obj => {
     								const wallets = obj.wallets && Array.isArray(obj.wallets) && obj.wallets.join(" ,");
@@ -2380,7 +2387,11 @@ var app = (function () {
     							return mappos.join(" | ");
     						}
     					},
-    					{ title: "Комментарии", field: "comments" }
+    					{
+    						title: "Комментарии",
+    						field: "comments",
+    						headerSort: false
+    					}
     				],
     				locale: true,
     				langs: {
@@ -2899,7 +2910,7 @@ var app = (function () {
     const { Object: Object_1$5 } = globals;
     const file$7 = "src\\user\\Users.svelte";
 
-    // (142:2) {#if $user.role === "root" || isManager()}
+    // (130:2) {#if $user.role === "root" || isManager()}
     function create_if_block$4(ctx) {
     	let div;
     	let linkbutton;
@@ -2918,7 +2929,7 @@ var app = (function () {
     			div = element("div");
     			create_component(linkbutton.$$.fragment);
     			attr_dev(div, "class", "createContainer svelte-12b68td");
-    			add_location(div, file$7, 142, 4, 3506);
+    			add_location(div, file$7, 130, 4, 3202);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -2944,7 +2955,7 @@ var app = (function () {
     		block,
     		id: create_if_block$4.name,
     		type: "if",
-    		source: "(142:2) {#if $user.role === \\\"root\\\" || isManager()}",
+    		source: "(130:2) {#if $user.role === \\\"root\\\" || isManager()}",
     		ctx
     	});
 
@@ -2980,15 +2991,15 @@ var app = (function () {
     			attr_dev(input, "type", "text");
     			attr_dev(input, "placeholder", "Поиск пользователей");
     			attr_dev(input, "class", "svelte-12b68td");
-    			add_location(input, file$7, 138, 4, 3333);
+    			add_location(input, file$7, 126, 4, 3029);
     			attr_dev(i, "class", "search link icon");
-    			add_location(i, file$7, 139, 4, 3414);
+    			add_location(i, file$7, 127, 4, 3110);
     			attr_dev(div0, "class", "ui icon input item");
-    			add_location(div0, file$7, 137, 2, 3295);
+    			add_location(div0, file$7, 125, 2, 2991);
     			attr_dev(div1, "class", "userControls inline svelte-12b68td");
-    			add_location(div1, file$7, 136, 0, 3258);
+    			add_location(div1, file$7, 124, 0, 2954);
     			attr_dev(div2, "id", "tableMountingPoint");
-    			add_location(div2, file$7, 147, 0, 3633);
+    			add_location(div2, file$7, 135, 0, 3329);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -3088,27 +3099,13 @@ var app = (function () {
     	});
 
     	function mountTable() {
-    		const data = userInfo.map((row, i) => {
-    			row.index = i;
-    			return row;
-    		});
-
-    		if (data.length) new window.Tabulator("#tableMountingPoint",
+    		if (userInfo.length) new window.Tabulator("#tableMountingPoint",
     		{
-    				data,
+    				data: userInfo,
     				layout: "fitDataTable",
     				pagination: "local",
     				paginationSize: 25,
     				columns: [
-    					{
-    						title: "#",
-    						field: "index",
-    						sorter: "number",
-    						cellClick(e, cell) {
-    							const id = cell._cell.row.data.userProps.id;
-    							goTo("/editUser", "id", id);
-    						}
-    					},
     					{
     						title: " ",
     						formatter(cell) {
@@ -3579,7 +3576,7 @@ var app = (function () {
     const { console: console_1 } = globals;
     const file$4 = "src\\fund\\Funds.svelte";
 
-    // (113:4) {#if $user.role === "root"}
+    // (105:4) {#if $user.role === "root"}
     function create_if_block$3(ctx) {
     	let div;
     	let linkbutton;
@@ -3595,7 +3592,7 @@ var app = (function () {
     			div = element("div");
     			create_component(linkbutton.$$.fragment);
     			attr_dev(div, "class", "createContainer svelte-1ocrjsp");
-    			add_location(div, file$4, 113, 4, 2515);
+    			add_location(div, file$4, 105, 4, 2354);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -3621,7 +3618,7 @@ var app = (function () {
     		block,
     		id: create_if_block$3.name,
     		type: "if",
-    		source: "(113:4) {#if $user.role === \\\"root\\\"}",
+    		source: "(105:4) {#if $user.role === \\\"root\\\"}",
     		ctx
     	});
 
@@ -3660,15 +3657,15 @@ var app = (function () {
     			attr_dev(input, "type", "text");
     			attr_dev(input, "placeholder", "Поиск фондов");
     			attr_dev(input, "class", "svelte-1ocrjsp");
-    			add_location(input, file$4, 109, 8, 2356);
+    			add_location(input, file$4, 101, 8, 2195);
     			attr_dev(i, "class", "search link icon");
-    			add_location(i, file$4, 110, 8, 2434);
+    			add_location(i, file$4, 102, 8, 2273);
     			attr_dev(div0, "class", "ui icon input item");
-    			add_location(div0, file$4, 108, 4, 2314);
+    			add_location(div0, file$4, 100, 4, 2153);
     			attr_dev(div1, "class", "fundControls inline svelte-1ocrjsp");
-    			add_location(div1, file$4, 107, 0, 2275);
+    			add_location(div1, file$4, 99, 0, 2114);
     			attr_dev(div2, "id", "tableMountingPoint");
-    			add_location(div2, file$4, 118, 0, 2638);
+    			add_location(div2, file$4, 110, 0, 2477);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -3776,23 +3773,13 @@ var app = (function () {
     	});
 
     	function mountTable() {
-    		const data = fundInfo.map((row, i) => {
-    			row.index = i;
-    			return row;
-    		});
-
     		new window.Tabulator("#tableMountingPoint",
     		{
     				layout: "fitDataTable",
-    				data,
+    				data: fundInfo,
     				pagination: "local",
     				paginationSize: 25,
     				columns: [
-    					{
-    						title: "#",
-    						field: "index",
-    						sorter: "number"
-    					},
     					{
     						title: "",
     						field: "id",

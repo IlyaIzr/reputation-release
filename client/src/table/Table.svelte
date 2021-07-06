@@ -48,6 +48,7 @@ function mountTable(data = [], last_page) {
       title: label,
       field: name,
       formatter: arrayFormatter,
+      headerSort: false,
     };
   };
   // Table mounting
@@ -57,7 +58,7 @@ function mountTable(data = [], last_page) {
     paginationSize: 25,
     paginationSizeSelector: [10, 25, 50, 100],
     ajaxURL: api + "table", //set url for ajax request
-    ajaxSorting:true, //send sort data to the server instead of processing locally
+    ajaxSorting: true, //send sort data to the server instead of processing locally
     ajaxParams: {
       where: where,
       // id: query || "",
@@ -65,7 +66,8 @@ function mountTable(data = [], last_page) {
       author: currentFund
     },
     columnMaxWidth: 300,
-    dataTree:true,
+    dataTree: true,
+    headerSort: false,
     // groupBy: "fundName",
 
     columns: [{
@@ -73,7 +75,7 @@ function mountTable(data = [], last_page) {
         field: "id",
         frozen: true,
         minWidth: 0,
-        width: 54,
+        width: 66,
         formatter: function(cell) {
           const id = cell._cell.row.data.id;
           const author = cell._cell.row.data.author;
@@ -81,27 +83,21 @@ function mountTable(data = [], last_page) {
           a.className = "linkToRow material-icons notranslate";  
           a.innerText = "create";
           a.style.textDecoration = 'none'
+          
           // Case root && has parent
-          // TODO
-          // if (cell._cell.row.data.parent && $user.role === "root") {      
-          //   a.href = "./editNote?id=" + id + "&parent=" + cell._cell.row.data.parent
-          //   return a;
-          // }
+          if (cell._cell.row.data.parent && $user.role === "root") {      
+            a.href = "./editNote?id=" + id + "&parent=" + cell._cell.row.data.parent
+            return a;
+          }
           
           // Case can edit
           if ( $user.role === "root" ||
-            ( $fundRights[author] && $fundRights[author] !== "readonly")
+          // fund member, not readonly, not history
+            ( $fundRights[author] && $fundRights[author] !== "readonly" && !cell._cell.row.data.parent)
           ) {
             a.href = "./editNote?id=" + id
             return a
           }
-          // {
-          //   a.addEventListener("click", () =>
-          //     goTo("/editNote", "id", id)
-          //   );
-          //   a.innerText = "create";
-          //   return a;
-          // }
 
           // Case draw modal
           const i = document.createElement("i")
@@ -117,6 +113,7 @@ function mountTable(data = [], last_page) {
       {
         title: "Фонд",
         field: "author",
+        headerSort: false,
         formatter: (cell) => {
           const author = cell._cell.row.data.author
           return $fundNames[author]
@@ -131,6 +128,7 @@ function mountTable(data = [], last_page) {
           } else
             return moment(cell._cell.row.data.created).format("MM-DD-YYYY");
         },
+        headerSort: true,
       },
       {
         title: "Обновлено",
@@ -141,6 +139,7 @@ function mountTable(data = [], last_page) {
           } else
             return moment(cell._cell.row.data.updated).format("MM-DD-YYYY");
         },
+        headerSort: true,
       },
       {
         title: "Автор",
@@ -152,6 +151,7 @@ function mountTable(data = [], last_page) {
         title: "Арбитраж",
         field: "case",
         width: 150,
+        headerSort: false,
         formatter: function(cell, formatterParams, onRendered) {
           const mappos = cell._cell.row.data.case.map((caseObj) => {
             return caseObj.arbitrage;
@@ -168,6 +168,7 @@ function mountTable(data = [], last_page) {
         title: "Ники",
         field: "nickname",
         width: 350,
+        headerSort: false,
         formatter: function(cell) {
           const mappos = cell._cell.row.data.nickname.map((obj) => {
             if (cell._cell.row.data.old)
@@ -187,6 +188,7 @@ function mountTable(data = [], last_page) {
         title: "Дисциплина",
         field: "nickname",
         width: 150,
+        headerSort: false,
         formatter: function(cell, formatterParams, onRendered) {
           const mappos = cell._cell.row.data.nickname.map((nickObj) => {
             return nickObj.discipline; // !
@@ -199,6 +201,7 @@ function mountTable(data = [], last_page) {
         title: "ФИО",
         field: "FIO",
         width: 250,
+        headerSort: false,
         formatter: function(cell, formatterParams, onRendered) {
           const mappos = cell._cell.row.data.FIO.map((fioObj) => {
             return (
@@ -216,6 +219,7 @@ function mountTable(data = [], last_page) {
         title: "Описание",
         field: "case",
         width: 250,
+        headerSort: false,
         formatter: function(cell, formatterParams, onRendered) {
           const mappos = cell._cell.row.data.case.map((caseObj) => {
             return caseObj.descr;
@@ -232,6 +236,7 @@ function mountTable(data = [], last_page) {
         title: "Ущерб ($)",
         field: "case",
         width: 100,
+        headerSort: false,
         formatter: function(cell, formatterParams, onRendered) {
           const mappos = cell._cell.row.data.case.map((caseObj) => {
             return caseObj.amount;
@@ -252,6 +257,7 @@ function mountTable(data = [], last_page) {
       {
         title: "Адреса",
         field: "location",
+        headerSort: false,
         formatter: function(cell, formatterParams, onRendered) {
           const mappos = cell._cell.row.data.location.map((obj) => {
             return obj.country + " " + obj.town + " " + obj.address;
@@ -271,6 +277,7 @@ function mountTable(data = [], last_page) {
       {
         title: "Webmoney",
         field: "webmoney",
+        headerSort: false,
         formatter: function(cell, formatterParams, onRendered) {
           const mappos = cell._cell.row.data.webmoney.map((obj) => {
             const wallets =
@@ -285,6 +292,7 @@ function mountTable(data = [], last_page) {
       {
         title: "Комментарии",
         field: "comments",
+        headerSort: false,
       },
     ],
 

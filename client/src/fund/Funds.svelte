@@ -34,20 +34,12 @@ onMount(async () => {
 });
 
 function mountTable() {
-  const data = fundInfo.map((row, i) => {
-    row.index = i;
-    return row;
-  });
   new window.Tabulator("#tableMountingPoint", {
     layout: "fitDataTable",
-    data,
+    data: fundInfo,
     pagination: "local",
     paginationSize: 25,
-    columns: [{
-        title: "#",
-        field: "index",
-        sorter: "number",
-      },
+    columns: [
       {
         title: "",
         field: "id",
