@@ -64,6 +64,14 @@ function mountForm() {
             row: 1,
           },
         },
+        // onInput(fb, c, val){
+        //   if (val.length) {
+        //     const index = val.length-1
+        //     const previousFields = fb.fields.nickname.fields
+        //     console.log(fb.fields.nickname.fields[index]);
+        //   }
+
+        // }
       },
 
       horizont: {

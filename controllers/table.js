@@ -14,9 +14,25 @@ async function getTable() {
   const page = req.query.page - 1 || 0  // tabulator starts page count from 1
   const limit = req.query.limit || req.query.size || 25 // or 'size'
   let where = req.query.where || ""  //TODO
-  const order = req.query.order || "desc"
-  const field = req.query.field || 'created'
   const { author } = req.query
+
+  let [field, order] = (function () {
+    if (!req.req.uri.query) return ['updated', 'desc']
+    const keys = req.req.uri.query.split('&')
+    if (!keys.length) return ['updated', 'desc']
+    let field, order
+    keys.forEach(keyValue => {
+      const [key, value] = keyValue.split('=')
+      if (key.includes('field')) return field = value
+      if (key.includes('dir')) return order = value
+    })
+    return [field, order]
+  })()
+  if (!field) field = 'updated'
+  if (!order) order = 'desc'
+  console.log('%c⧭', 'color: #00bf00', field, order);
+
+
 
   if (where || author) {
     const table = await NOSQL('arbitrages').find()
@@ -30,7 +46,7 @@ async function getTable() {
         return ret
       })
     // await table.skip(page * limit).take(Number(limit)) //not working
-    
+
     const res = table.splice(page * limit, Number(limit))
     res.forEach(e => !e._children[0] ? delete e._children : null);
     const count = table.length

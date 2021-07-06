@@ -50,6 +50,13 @@ const parent = params.get('parent')
             },
           },
         },
+
+        nicknameOld: {
+          label: "Архивные дицсциплины и никнеймы",
+          hint: 'Поскольку данная версия записи является архивной, вы можете редактировать текущее поле или использовать блок "Дисциплины"',
+          type: "textarea",
+          visible: Boolean(data.nicknameOld),
+        },
   
         nickname: {
           label: "Дисциплины",
@@ -76,11 +83,6 @@ const parent = params.get('parent')
           value: '<div class="filler"/>'
         },
   
-        nicknameOld: {
-          label: "Архивные значения",
-          type: "textarea",
-          visible: false,
-        },
   
         FIO: {
           label: "ФИО",

@@ -51,16 +51,17 @@ function mountTable(data = [], last_page) {
     };
   };
   // Table mounting
-  new Tabulator("#tableMountingPoint", {
+  const table = new Tabulator("#tableMountingPoint", {
     data,
     pagination: "remote", //enable remote pagination
     paginationSize: 25,
     paginationSizeSelector: [10, 25, 50, 100],
     ajaxURL: api + "table", //set url for ajax request
+    ajaxSorting:true, //send sort data to the server instead of processing locally
     ajaxParams: {
       where: where,
-      id: query || "",
-      order: order,
+      // id: query || "",
+      // order: order,
       author: currentFund
     },
     columnMaxWidth: 300,
@@ -81,10 +82,11 @@ function mountTable(data = [], last_page) {
           a.innerText = "create";
           a.style.textDecoration = 'none'
           // Case root && has parent
-          if (cell._cell.row.data.parent && $user.role === "root") {      
-            a.href = "./editNote?id=" + id + "&parent=" + cell._cell.row.data.parent
-            return a;
-          }
+          // TODO
+          // if (cell._cell.row.data.parent && $user.role === "root") {      
+          //   a.href = "./editNote?id=" + id + "&parent=" + cell._cell.row.data.parent
+          //   return a;
+          // }
           
           // Case can edit
           if ( $user.role === "root" ||
@@ -354,6 +356,8 @@ function mountTable(data = [], last_page) {
       this.redraw(true);
     },
   });
+  
+  console.log('%c⧭', 'color: #ff0000', table.getSorters());
 
 }
 
@@ -391,6 +395,12 @@ function mountModal(id, data) {
         },
         visible: data.case.length
       },
+      
+      nicknameOld: {
+        label: "Архивные дицсциплины и никнеймы",
+        type: "textarea",
+        visible: data.nicknameOld,
+      },
 
       nickname: {
         label: "Дисциплины",
@@ -414,11 +424,6 @@ function mountModal(id, data) {
       },
 
 
-      nicknameOld: {
-        label: "Архивные значения",
-        type: "textarea",
-        visible: false,
-      },
 
       FIO: {
         label: "ФИО",
