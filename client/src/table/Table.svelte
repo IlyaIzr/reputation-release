@@ -52,7 +52,7 @@ function mountTable(data = [], last_page) {
     };
   };
   // Table mounting
-  const table = new Tabulator("#tableMountingPoint", {
+  new Tabulator("#tableMountingPoint", {
     data,
     pagination: "remote", //enable remote pagination
     paginationSize: 25,
@@ -374,7 +374,9 @@ function mountModal(id, data) {
     fields: {
       author: {
         label: "Автор",
-        disabled: true,
+        type: "select",
+        options: fundOptions,
+        readonly: true,
         value: $fundNames[id]
       },
 

@@ -8,8 +8,7 @@ import {
 } from '../rest/store'
 import {
   createUser,
-  getAvailibleUsers,
-  getUsersByQuery
+  getAvailibleUsers
 } from '../rest/user.request'
 import {
   getFundFormated,
@@ -500,7 +499,9 @@ onMount(async () => {
   }
   h5{
     padding: 0 14px;
-    margin: 0 0 4px 0 ;
+    margin: 0 0 8px 0 ;
+    font-size: 24px;
+    font-weight: normal;
   }
   .link-button {
     cursor: pointer;

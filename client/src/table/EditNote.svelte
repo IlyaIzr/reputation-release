@@ -25,7 +25,7 @@ const parent = params.get('parent')
           type: "select",
           options: creatableGroups,
           required: true,
-          disabled: $user.role !== 'root'
+          readonly: $user.role !== 'root'
         },
   
         // Rest info
