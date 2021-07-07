@@ -1,7 +1,7 @@
 {
-	"pid": 9652,
-	"date": "2021-07-07T19:26:23.603Z",
-	"port": 35729,
+	"pid": 6372,
+	"date": "2021-07-07T20:50:58.093Z",
+	"port": 8000,
 	"ip": "0.0.0.0",
 	"stats": [
 		{
@@ -11,34 +11,43 @@
 				"total": "4",
 				"app": "1.0.0"
 			},
-			"pid": 9652,
+			"pid": 6372,
 			"thread": "",
-			"mode": "release",
+			"mode": "debug",
 			"overload": 0,
-			"date": "2021-07-07T19:44:27.431Z",
-			"memory": 7.87,
-			"rm": 0,
-			"fm": 0,
+			"date": "2021-07-07T20:51:58.208Z",
+			"textdb": {
+				"size": 1.499,
+				"pendingwrite": 0,
+				"pendingread": 0,
+				"duration": 0,
+				"documents": 1901,
+				"reading": 0,
+				"writing": 0
+			},
+			"memory": 23.46,
+			"rm": 12,
+			"fm": 11,
 			"wm": 0,
 			"em": 0,
 			"mm": 0,
-			"om": 0,
+			"om": 52,
 			"dm": 0,
-			"um": 0,
+			"um": 0.024,
 			"pm": 0,
 			"sm": 0,
 			"dbrm": 0,
 			"dbwm": 0,
-			"usage": 2,
-			"requests": 0,
+			"usage": 0,
+			"requests": 23,
 			"pending": 0,
 			"external": 0,
 			"errors": 0,
 			"timeouts": 0,
-			"online": 1,
-			"uptime": 19,
+			"online": 0,
+			"uptime": 2,
 			"download": 0,
-			"upload": 0
+			"upload": 0.024
 		}
 	]
 }

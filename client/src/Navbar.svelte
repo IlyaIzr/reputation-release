@@ -22,6 +22,7 @@ async function logOut() {
       <NavButton to="funds" label="Фонды" />
       <NavButton to="users" label="Пользователи" />
     {/if}
+    <NavButton to="settings" label="Профиль" />
     <div class="link-button" on:click={logOut}>Выйти</div>
   {/if}
 </nav>

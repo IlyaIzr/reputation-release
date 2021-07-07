@@ -14,6 +14,7 @@ import Funds from './fund/Funds.svelte';
 import EditFund from './fund/EditFund.svelte';
 import CreateNote from './table/CreateNote.svelte';
 import EditNote from './table/EditNote.svelte';
+import Settings from './Settings.svelte';
 
 let isLoaded = false;
 
@@ -45,7 +46,7 @@ window.onpopstate = function(e){
 
 <main>
   <Navbar />
-  <div class="navFiller"></div>
+  <div class="navFiller" />
 
   <!-- Routing -->
 
@@ -69,6 +70,8 @@ window.onpopstate = function(e){
     <Users />
   {:else if $location === "/funds"}
     <Funds />
+  {:else if $location === "/settings"}
+    <Settings />
   {:else if $location === "/"}
     <Table />
   {:else}
@@ -77,7 +80,7 @@ window.onpopstate = function(e){
 </main>
 
 <style>
-  .navFiller{
+  .navFiller {
     height: 34px;
   }
 </style>

@@ -52,3 +52,22 @@ export const logout = async () => {
     return error
   }
 }
+
+export const updateCreds = async (data) => {
+  const options = {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    },
+
+    body: JSON.stringify({ ...data })
+  }
+  try {
+    const response = await fetch(api + 'auth/updateCreds/', options)
+    const res = response.json()
+    return res
+  } catch (error) {
+    return error
+  }
+}
