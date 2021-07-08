@@ -1,5 +1,5 @@
 if (window.location.hostname === 'localhost') {
-  var api = window.location.protocol + '//' + "localhost:8000" + '/api/'
+  var api = window.location.protocol + '//' + "localhost:" + window.location.port + '/api/'
 } else {
   var api = window.location.protocol + '//' + "reputation.vpluseteam.com" + '/api/'
 }
