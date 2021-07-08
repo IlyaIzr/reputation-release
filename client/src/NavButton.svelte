@@ -24,7 +24,7 @@
     display: inline-block;
     font-size: 16px;
     margin: 0px 0px 0px 0px;
-    padding: 2px 8px 6px 8px;
+    padding: 2px 8px 8px 8px;
     border-radius: 2px;
     font-family: Roboto, -apple-system, Helvetica Neue, Helvetica, Arial, sans-serif;
   }

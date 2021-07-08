@@ -7,7 +7,8 @@ import {
 } from './rest/auth.request'
 import {
   user,
-  goTo
+  goTo,
+fundRights
 } from './rest/store'
 
 const config = {
@@ -31,7 +32,10 @@ const config = {
 
       const res = await login(data.credential, data.password);
       if (res.status === "OK") {
-        user.set(res.data)
+        $user = res.data.user
+        res.data.userProps?.funds && fundRights.set(res.data.userProps.funds)
+        if (res.data.userProps?.children) $user.children = res.data.userProps.children
+        
         fb.fields.message.value = res.msg
         setTimeout(() => {
           goTo('/')
@@ -48,5 +52,5 @@ onMount(() => {
 </script>
 
 <main>
-    <div id="loginForm" />
+  <div id="loginForm" />
 </main>

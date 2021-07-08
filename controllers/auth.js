@@ -38,7 +38,8 @@ async function login() {
 	if (!comparedUser) return $.json({ status: 'ERR', msg: 'Неверный пароль или логин' })
 
 	delete comparedUser.password
-
+	// Add user props
+	const userProps = await NOSQL('userprops').one().id(comparedUser.id).promise() || {}
 
 	var opt = { ...DEF.cookieOptions };
 	opt.id = comparedUser.id;              // A user ID
@@ -47,7 +48,9 @@ async function login() {
 
 	// Creates a cookie and session item
 	// return MAIN.session.setcookie($, opt, $.done(user));
-	return MAIN.session.setcookie($, opt, _ => $.json({ status: 'OK', msg: 'Успешный логин', data: comparedUser }));
+	return MAIN.session.setcookie($, opt, _ => $.json({
+		status: 'OK', msg: 'Успешный логин', data: { user: comparedUser, userProps }
+	}));
 }
 
 async function refresh() {
