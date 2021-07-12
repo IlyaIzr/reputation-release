@@ -15,7 +15,7 @@ async function login() {
 
 	// Simple validation
 	if (!credential || !password) {
-		return $.status(400).json({ status: 'ERR', msg: 'Введите все обязательные поля' })
+		return $.json({ status: 'ERR', msg: 'Введите все обязательные поля' })
 	}
 
 	const builder = TABLE('users').find();
@@ -26,7 +26,7 @@ async function login() {
 	});
 	const res = await builder.promise()
 
-	if (!res?.[0]) return $.status(400).json({ status: 'ERR', msg: 'Неверный пароль или логин' })
+	if (!res?.[0]) return $.json({ status: 'ERR', msg: 'Неверный пароль или логин' })
 
 	let comparedUser = null
 
