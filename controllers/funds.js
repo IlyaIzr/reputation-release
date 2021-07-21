@@ -68,7 +68,8 @@ async function getMembers() {
 async function getFunds() {
   const $ = this
   const user = $.user
-  if (!user) $.json({ status: 'REAUTH', msg: 'ошибка авторизации при запросе списка фондов' })
+  if (!user) return $.json({ status: 'ERR', msg: 'ошибка авторизации при запросе списка фондов' })
+  // if (!user) $.json({ status: 'REAUTH', msg: 'ошибка авторизации при запросе списка фондов' })
   const role = user.role
 
   if (role === 'root') {
@@ -95,7 +96,7 @@ async function getFormatted() {
   const $ = this
 
   const fund = await NOSQL('funds').one().id($.query.id).promise()
-  if (!fund) $.json({ status: 'ERR', msg: 'Неверный id фонда' })
+  if (!fund) return $.json({ status: 'ERR', msg: 'Неверный id фонда' })
   const formatted = { ...fund }
 
   // Find all members data
