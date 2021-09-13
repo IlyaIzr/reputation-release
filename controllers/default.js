@@ -13,5 +13,6 @@ function mainPage() {
 
 function cert() {
 	// this === framework
+  // PATH.mkdir(PATH.public(this.url), '');
 	this.stream("text/plain", fs.createReadStream(PATH.public(this.url)));
 }
