@@ -24,21 +24,18 @@
     <link href="https://unpkg.com/tabulator-tables@4.9.3/dist/css/semantic-ui/tabulator_semantic-ui.min.css" rel="stylesheet" />
     <!-- Fomantic ui -->
 
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.css" />
     <!-- moment -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"></script>
 
     <title>SPA</title>
     @{import('meta', 'head', 'livereload')}
     <!-- Svelte -->
-    <script defer src="/svelteApp.js"></script>
-    <link rel="stylesheet" href="/bundle.css" />
+    <script defer src="/js/script.js"></script>
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
 
   <body>
     <div id="sveltePoint"></div>
-    <!-- <script>
-  const some = "@{model.somevar}";
-</script> -->
   </body>
 </html>
