@@ -1,0 +1,8 @@
+// Static files mapping according a version
+
+// WHY?
+// You can change a name of static file without replacement name in all names in all project files.
+
+// The files below must exists
+/js/script.js					  : auto
+/css/style.css					: auto
