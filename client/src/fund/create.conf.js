@@ -1,7 +1,7 @@
-import { insertFund } from '../rest/fund.request'
-import { fundNames, user } from '../rest/store';
+import { insertFund } from "../rest/fund.request";
+import { fundNames, user } from "../rest/store";
 export const createFund = {
-  title: 'Создание фонда',
+  title: "Создание фонда",
   fields: {
     name: {
       label: "Название",
@@ -10,12 +10,7 @@ export const createFund = {
     email: {
       label: "E-mail",
       type: "email",
-      rules: [
-        (val) =>
-          Boolean(val) == false ||
-          Boolean(val.includes("@") && val.includes(".")) ||
-          "неверный формат e-mail",
-      ],
+      rules: [(val) => Boolean(val) == false || Boolean(val.includes("@") && val.includes(".")) || "неверный формат e-mail"],
     },
     skype: {
       label: "Skype",
@@ -53,24 +48,23 @@ export const createFund = {
   },
   methods: {
     async onSubmit(fb, comp, data) {
-      let ownId
-      user.subscribe(val => ownId = val.id)
+      let ownId;
+      user.subscribe((val) => (ownId = val.id));
 
       // Todo
       const cleaned = {
-        owner: ownId
+        owner: ownId,
       };
       for (const [key, value] of Object.entries(data)) {
         if (value !== "") cleaned[key] = value;
       }
 
-
       const res = await insertFund(cleaned);
       fb.fields.msg.value = res.msg;
-      if (res.status === 'OK') {
-        fundNames.update(prev => {
-          return { ...prev, [res.data.fund.id]: data.name }
-        })
+      if (res.status === "OK") {
+        fundNames.update((prev) => {
+          return { ...prev, [res.data.fund.id]: data.name };
+        });
       }
     },
   },
@@ -80,5 +74,4 @@ export const createFund = {
       color: "primary",
     },
   },
-
-}
+};

@@ -1,13 +1,11 @@
 <script>
-import { onMount } from 'svelte';
+  import { onMount } from "svelte";
 
-import {
-  createFund
-} from './create.conf'
+  import { createFund } from "./create.conf";
 
-onMount(() => {
-  window.callForm2('#createGroupForm', {}, createFund);
-});
+  onMount(() => {
+    window.callForm2("#createGroupForm", {}, createFund);
+  });
 </script>
 
 <main>
