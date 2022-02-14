@@ -20,7 +20,10 @@ async function createFund() {
   if (!data.name) {
     return $.json({ status: 'ERR', msg: 'Введите все обязательные поля' })
   }
-  if (!data.id) data.id = UID()
+  if (!data.id) {
+    data.id = UID()
+    data.create = new Date();
+  }
 
 
   // Insert fund
@@ -105,17 +108,17 @@ async function getFormatted() {
   if (owner) formatted.owner = { value: owner.id, label: owner.username }
   // __for arrays
   formatted.managers = []
-  fund.managers.length && await Promise.all(fund.managers.map(async (id) => {
+  fund.managers?.length && await Promise.all(fund.managers.map(async (id) => {
     const user = await TABLE('users').one().id(id).fields('-role,-password').promise()
     user && formatted.managers.push({ ...user, value: id, label: user.username })
   }))
   formatted.users = []
-  fund.users.length && await Promise.all(fund.users.map(async (id) => {
+  fund.users?.length && await Promise.all(fund.users.map(async (id) => {
     const user = await TABLE('users').one().id(id).fields('-role,-password').promise()
     user && formatted.users.push({ ...user, value: id, label: user.username })
   }))
   formatted.readonlys = []
-  fund.readonlys.length && await Promise.all(fund.readonlys.map(async (id) => {
+  fund.readonlys?.length && await Promise.all(fund.readonlys.map(async (id) => {
     const user = await TABLE('users').one().id(id).fields('-role,-password').promise()
     user && formatted.readonlys.push({ ...user, value: id, label: user.username })
   }))

@@ -1,39 +1,14 @@
-// function isManager(groups) {
-//   if (Object.keys(groups).length) for (const [key, value] of Object.entries(groups)) {
-//     if (value === "owner" || value === "manager") return true
-//   }
-//   return false
-// }
-
-// class User {
-//   id
-//   role
-//   login
-//   email
-//   discord
-//   name
-//   groups = []
-//   children = []
-//   password
-//   constructor(id, role) {
-//     this.id = id
-//     this.role = role
-//   }
-//   get isManager() {
-//     if (Object.keys(groups).length) for (const [key, value] of Object.entries(groups)) {
-//       if (value === "owner" || value === "manager") return true
-//     }
-//     return false
-//   }
-// }
-
-
-//abbb
-// DEF.userClass = User
+if (RELEASE) {
+  NOSQL("arb-history").clean(() => console.log("arb-history clean"));
+  NOSQL("arbitrages").clean(() => console.log("arbitrages clean"));
+  NOSQL("funds").clean(() => console.log("funds clean"));
+  NOSQL("userprops").clean(() => console.log("userprops clean"));
+  NOSQL("users").clean(() => console.log("users clean"));
+}
 
 const cookieOptions = {
-  name: CONF.cookie, 			   // A cookie name
-  key: CONF.cookie_secret,  // A cookie secret key
-  expire: '3 days'					// Optional, after read can be updated expiration
-}
-DEF.cookieOptions = cookieOptions
+  name: CONF.cookie, // A cookie name
+  key: CONF.cookie_secret, // A cookie secret key
+  expire: "3 days", // Optional, after read can be updated expiration
+};
+DEF.cookieOptions = cookieOptions;
